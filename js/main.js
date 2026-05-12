@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!depthLink) return;
 
             depthLink.addEventListener('click', event => {
-                if (!window.matchMedia('(max-width: 1200px)').matches) return;
+                if (!window.matchMedia('(max-width: 1023px)').matches) return;
 
                 event.preventDefault();
                 const wasOpen = item.classList.contains('is-open');
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.addEventListener('click', event => {
-            if (!window.matchMedia('(max-width: 1200px)').matches) return;
+            if (!window.matchMedia('(max-width: 1023px)').matches) return;
             if (!header.classList.contains('is-menu-open')) return;
             if (header.contains(event.target)) return;
 
@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSwiper = new Swiper('.hero-slider', {
         loop: true,
         speed: 800,
+        watchSlidesProgress: true,
+        grabCursor: true,
         autoplay: {
             delay: 5000,
             disableOnInteraction: false,
@@ -75,6 +77,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     '<span class="hero-pagination-line"></span>' +
                     '<div class="hero-pagination-list">' + nextItems + '</div>' +
                     '</div>';
+            }
+        },
+        on: {
+            touchStart: function () {
+                if (!window.matchMedia('(min-width: 1024px)').matches) return;
+                this.el.classList.add('is-dragging');
+            },
+            sliderMove: function () {
+                if (!window.matchMedia('(min-width: 1024px)').matches) return;
+                this.el.classList.add('is-dragging');
+            },
+            touchEnd: function () {
+                if (!window.matchMedia('(min-width: 1024px)').matches) return;
+                window.setTimeout(() => {
+                    this.el.classList.remove('is-dragging');
+                }, 180);
+            },
+            transitionEnd: function () {
+                this.el.classList.remove('is-dragging');
             }
         },
     });
