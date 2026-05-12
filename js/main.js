@@ -2,6 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     const mobileMenuButton = document.querySelector('.mobile-menu-btn');
     const menuItems = document.querySelectorAll('.menu-item');
+    const searchOpenButton = document.querySelector('.search-open');
+    const searchPanel = document.querySelector('.search-panel');
+    const searchCloseButton = document.querySelector('.search-close');
+    const searchInput = document.querySelector('#site-search');
 
     const updateHeaderState = () => {
         if (!header) return;
@@ -39,13 +43,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.addEventListener('click', event => {
+            if (header.contains(event.target)) return;
+
+            menuItems.forEach(menuItem => {
+                menuItem.classList.remove('is-open');
+            });
+
             if (!window.matchMedia('(max-width: 1023px)').matches) return;
             if (!header.classList.contains('is-menu-open')) return;
-            if (header.contains(event.target)) return;
 
             header.classList.remove('is-menu-open');
             mobileMenuButton.setAttribute('aria-expanded', 'false');
             mobileMenuButton.setAttribute('aria-label', '메뉴 열기');
+        });
+    }
+
+    if (searchOpenButton && searchPanel && searchCloseButton && searchInput) {
+        const openSearch = () => {
+            searchPanel.classList.add('is-open');
+            searchPanel.setAttribute('aria-hidden', 'false');
+            searchOpenButton.setAttribute('aria-expanded', 'true');
+
+            if (header && mobileMenuButton) {
+                menuItems.forEach(menuItem => {
+                    menuItem.classList.remove('is-open');
+                });
+                header.classList.remove('is-menu-open');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                mobileMenuButton.setAttribute('aria-label', '메뉴 열기');
+            }
+
+            window.setTimeout(() => searchInput.focus(), 120);
+        };
+
+        const closeSearch = () => {
+            searchPanel.classList.remove('is-open');
+            searchPanel.setAttribute('aria-hidden', 'true');
+            searchOpenButton.setAttribute('aria-expanded', 'false');
+        };
+
+        searchOpenButton.addEventListener('click', event => {
+            event.preventDefault();
+            if (searchPanel.classList.contains('is-open')) {
+                searchInput.focus();
+            } else {
+                openSearch();
+            }
+        });
+
+        searchCloseButton.addEventListener('click', closeSearch);
+
+        document.addEventListener('click', event => {
+            if (!searchPanel.classList.contains('is-open')) return;
+            if (searchPanel.contains(event.target) || searchOpenButton.contains(event.target)) return;
+            closeSearch();
+        });
+
+        searchPanel.querySelector('.search-form').addEventListener('submit', event => {
+            event.preventDefault();
         });
     }
     

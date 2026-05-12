@@ -62,12 +62,26 @@
         </nav>
 
         <div class="util-menu">
-            <a href="#">Ingredient</a>
-            <a href="#">Support</a>
+            <a href="#" class="search-open" aria-controls="search-panel" aria-expanded="false"><i class="ph ph-magnifying-glass"></i> Search</a>
+            <a href="#"><i class="ph ph-headset"></i> Support</a>
         </div>
     </div>
     <div class="gnb-bg"></div>
 </header>
+
+    <div class="search-panel" id="search-panel" aria-hidden="true">
+        <div class="search-panel-inner content-width">
+            <form class="search-form" action="#" role="search">
+                <label for="site-search" class="search-label">검색어 입력</label>
+                <div class="search-input-wrap">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <input type="search" id="site-search" name="search" placeholder="제품명 또는 고민을 검색해보세요" autocomplete="off">
+                    <button type="submit" class="search-submit">Search</button>
+                </div>
+            </form>
+            <button type="button" class="search-close" aria-label="검색 닫기"><i class="ph ph-x"></i></button>
+        </div>
+    </div>
 
     <main>
         <section class="hero-slider swiper">
