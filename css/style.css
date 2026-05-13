@@ -156,7 +156,7 @@ img, video { max-width: 100%; }
     position: fixed;
     top: 80px;
     left: 0;
-    z-index: 999;
+    z-index: 1003;
     width: 100%;
     padding: 26px 0;
     background: rgba(255, 255, 255, 0.96);
@@ -2092,13 +2092,14 @@ img, video { max-width: 100%; }
     .md-pick-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 20px;
+        align-items: stretch;
     }
 
     .md-pick-item,
     .md-pick-item:first-child {
         grid-column: auto;
-        height: 300px;
-        aspect-ratio: auto;
+        height: auto;
+        aspect-ratio: 335 / 320;
     }
 
     .routine-inner {
@@ -2270,8 +2271,10 @@ img, video { max-width: 100%; }
         font-size: 17px;
     }
 
-    .md-pick-item {
-        height: 320px;
+    .md-pick-item,
+    .md-pick-item:first-child {
+        height: auto;
+        aspect-ratio: 335 / 320;
     }
 
     .routine-inner {
