@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - QuietSkin</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div data-include="header"></div>
+
+    <main class="login-page">
+        <section class="login-shell" aria-labelledby="login-title">
+            <div class="login-panel">
+                <span class="login-eyebrow">Member Login</span>
+                <h2 id="login-title">로그인</h2>
+                <p>QuietSkin 회원 혜택과 피부 루틴을 이어서 확인하세요.</p>
+
+                <form action="#" method="post" class="login-form">
+                    <label for="user-id">아이디 또는 이메일</label>
+                    <div class="login-field">
+                        <span class="material-icons" aria-hidden="true">person_outline</span>
+                        <input type="text" id="user-id" name="user-id" placeholder="아이디 또는 이메일 입력">
+                    </div>
+
+                    <label for="user-password">비밀번호</label>
+                    <div class="login-field">
+                        <span class="material-icons" aria-hidden="true">lock_outline</span>
+                        <input type="password" id="user-password" name="user-password" placeholder="비밀번호 입력">
+                    </div>
+
+                    <div class="login-options">
+                        <label class="login-check">
+                            <input type="checkbox" name="remember-id">
+                            <span>아이디 저장</span>
+                        </label>
+                        <a href="#">아이디/비밀번호 찾기</a>
+                    </div>
+
+                    <button type="submit" class="login-submit">로그인</button>
+                </form>
+
+                <div class="login-links">
+                    <a href="#">회원가입</a>
+                    <a href="#">비회원 주문조회</a>
+                </div>
+
+                <div class="social-login">
+                    <button type="button">카카오 로그인</button>
+                    <button type="button">네이버 로그인</button>
+                </div>
+            </div>
+
+            <aside class="login-visual" aria-label="회원 혜택">
+                <img src="./images/product_all.jpg" alt="QuietSkin 진정 케어 이미지">
+                <div class="login-benefit">
+                    <strong>신규 회원 5,000원 쿠폰</strong>
+                    <span>첫 구매 무료배송과 등급별 적립 혜택을 함께 받아보세요.</span>
+                </div>
+                <ul>
+                    <li><span class="material-icons">verified_user</span>민감 피부 맞춤 루틴 저장</li>
+                    <li><span class="material-icons">redeem</span>회원 전용 쿠폰 자동 적용</li>
+                    <li><span class="material-icons">local_shipping</span>주문과 배송을 한눈에 확인</li>
+                </ul>
+            </aside>
+        </section>
+    </main>
+    <div data-include="footer"></div>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>

@@ -1,135 +1,304 @@
 /**
- * QuietSkin 고유 프론트엔드 인터랙션 스크립트
- * - GNB 반응형 및 아코디언 서브메뉴 제어
- * - 검색 레이어 오버레이 토글
- * - 메인 히어로 Swiper 3단 롤링 슬라이더 최적화
- * - 스크롤 반응형 이미지 리빌(Reveal) 애니메이션 
+ * QuietSkin common UI script
+ * - header/footer partial loading
+ * - navigation and search interactions
+ * - optional Swiper/reveal interactions
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    
-    // ==========================================
-    // 01. 네비게이션 GNB 서브메뉴 토글 제어
-    // ==========================================
+    loadCommonParts().then(function () {
+        initNavigation();
+        initSearch();
+        initHeroSwiper();
+        initRevealAnimation();
+        initPromiseReviewSwiper();
+        initDetailReviewSlider();
+    });
+});
+
+function loadCommonParts() {
+    const includeTargets = document.querySelectorAll('[data-include]');
+    const tasks = Array.from(includeTargets).map(function (target) {
+        const name = target.dataset.include;
+        if (!name) return Promise.resolve();
+
+        return fetch('./' + name + '.html')
+            .then(function (response) {
+                if (!response.ok) throw new Error(name + '.html load failed');
+                return response.text();
+            })
+            .then(function (html) {
+                target.outerHTML = html;
+            })
+            .catch(function (error) {
+                console.warn(error.message);
+            });
+    });
+
+    return Promise.all(tasks);
+}
+
+function initNavigation() {
     const menuLinks = document.querySelectorAll('.gnb > .has_sub > .main_menu_link');
+    const navLinks = document.querySelectorAll('.gnb a');
     const gnbWrap = document.querySelector('.gnb_wrap');
     const menuToggleBtn = document.querySelector('.btn_m_menu');
+    const header = document.querySelector('.header');
+    const mobileQuery = window.matchMedia('(max-width: 767px)');
 
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            // 반응형 모바일웹 스펙 및 태블릿 터치 스크린에서 링크 기본 이동 방지
-            e.preventDefault();
-            const parentLi = this.parentElement;
-            
-            // 동일 레벨의 활성화된 다른 서브메뉴가 있다면 닫기 조치
-            if (parentLi.classList.contains('active')) {
-                parentLi.classList.remove('active');
-            } else {
-                menuLinks.forEach(item => item.parentElement.classList.remove('active'));
-                parentLi.classList.add('active');
+    const closeMobileMenu = function () {
+        if (!gnbWrap || !menuToggleBtn) return;
+
+        gnbWrap.classList.remove('open');
+        document.body.classList.remove('no-scroll');
+        menuToggleBtn.setAttribute('aria-expanded', 'false');
+        menuToggleBtn.setAttribute('aria-label', '메뉴 열기');
+
+        const iconNode = menuToggleBtn.querySelector('.material-icons');
+        if (iconNode) iconNode.textContent = 'menu';
+    };
+
+    const setActiveNavigation = function () {
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+        navLinks.forEach(function (link) {
+            const linkPath = link.getAttribute('href') ? link.getAttribute('href').replace('./', '') : '';
+            const isActive = linkPath === currentPath;
+            link.classList.toggle('is-current', isActive);
+            if (isActive) link.setAttribute('aria-current', 'page');
+
+            if (isActive && link.closest('.has_sub')) {
+                const parentLink = link.closest('.has_sub').querySelector('.main_menu_link');
+                if (parentLink) parentLink.classList.add('is-current');
             }
+        });
+    };
+
+    const updateHeaderState = function () {
+        if (!header) return;
+        header.classList.toggle('is-scrolled', window.scrollY > 0);
+    };
+
+    menuLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            if (!mobileQuery.matches) return;
+
+            event.preventDefault();
+            const parentLi = this.parentElement;
+            const isActive = parentLi.classList.contains('active');
+
+            menuLinks.forEach(function (item) {
+                item.parentElement.classList.remove('active');
+                item.setAttribute('aria-expanded', 'false');
+            });
+
+            parentLi.classList.toggle('active', !isActive);
+            this.setAttribute('aria-expanded', String(!isActive));
         });
     });
 
-    // 모바일 전용 트리거 햄버거 버튼 제어 (오버 인터랙션 유연화)
     if (menuToggleBtn && gnbWrap) {
         menuToggleBtn.addEventListener('click', function () {
-            gnbWrap.classList.toggle('open');
-            
-            // 아이콘 변경 인터랙션 (menu -> close 호환 제어)
+            const isOpen = gnbWrap.classList.toggle('open');
+            document.body.classList.toggle('no-scroll', isOpen);
+            this.setAttribute('aria-expanded', String(isOpen));
+            this.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
+
             const iconNode = this.querySelector('.material-icons');
             if (iconNode) {
-                iconNode.textContent = gnbWrap.classList.contains('open') ? 'close' : 'menu';
+                iconNode.textContent = isOpen ? 'close' : 'menu';
             }
+        });
+
+        navLinks.forEach(function (link) {
+            link.addEventListener('click', function () {
+                if (!this.parentElement.classList.contains('has_sub')) {
+                    closeMobileMenu();
+                }
+            });
         });
     }
 
-    // ==========================================
-    // 02. 검색 바 슬라이드 다운 오버레이 제어
-    // ==========================================
+    document.addEventListener('click', function (event) {
+        if (!gnbWrap || !menuToggleBtn || !gnbWrap.classList.contains('open')) return;
+        if (gnbWrap.contains(event.target) || menuToggleBtn.contains(event.target)) return;
+        closeMobileMenu();
+    });
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') return;
+        closeMobileMenu();
+    });
+
+    window.addEventListener('resize', function () {
+        if (!mobileQuery.matches) closeMobileMenu();
+    });
+
+    window.addEventListener('scroll', updateHeaderState);
+    updateHeaderState();
+    setActiveNavigation();
+}
+
+function initSearch() {
     const searchToggleBtn = document.querySelector('.btn_search_toggle');
     const searchCloseBtn = document.querySelector('.btn_search_close');
     const searchOverlay = document.querySelector('.search_overlay_bar');
     const searchInput = document.querySelector('.search_input');
+    const searchForm = document.querySelector('.search_form');
+
+    const closeSearch = function () {
+        if (!searchOverlay || !searchToggleBtn) return;
+        searchOverlay.classList.remove('open');
+        searchOverlay.setAttribute('aria-hidden', 'true');
+        searchToggleBtn.setAttribute('aria-expanded', 'false');
+    };
 
     if (searchToggleBtn && searchOverlay) {
         searchToggleBtn.addEventListener('click', function () {
             searchOverlay.classList.add('open');
-            // 열림과 동시에 입력창에 포커스를 주어 UX 최적화 보장
-            if (searchInput) setTimeout(() => searchInput.focus(), 300);
+            searchOverlay.setAttribute('aria-hidden', 'false');
+            this.setAttribute('aria-expanded', 'true');
+            if (searchInput) {
+                setTimeout(function () {
+                    searchInput.focus();
+                }, 300);
+            }
         });
     }
 
     if (searchCloseBtn && searchOverlay) {
         searchCloseBtn.addEventListener('click', function () {
-            searchOverlay.classList.remove('open');
+            closeSearch();
         });
     }
 
-    // ==========================================
-    // 03. 히어로 배너 슬라이더 초기화 (Swiper 라이브러리 바인딩)
-    // ==========================================
-    const heroSwiper = new Swiper('.hero_slider', {
-        loop: true,                         // 무한 루프 롤링 3개 구현
-        effect: 'fade',                     // 비주얼 이미지 겹침 투명도 모션 페이드 효과
-        fadeEffect: { 
-            crossFade: true 
-        },
-        autoplay: { 
-            delay: 5000, 
-            disableOnInteraction: false     // 사용자 마우스 제어 후에도 자동 재생 유지
-        },
-        pagination: { 
-            el: '.swiper-pagination', 
-            clickable: true 
-        },
-        navigation: { 
-            nextEl: '.swiper-button-next', 
-            prevEl: '.swiper-button-prev' 
-        },
+    if (searchForm) {
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+        });
+    }
+
+    document.addEventListener('click', function (event) {
+        if (!searchOverlay || !searchOverlay.classList.contains('open')) return;
+        if (searchOverlay.contains(event.target) || (searchToggleBtn && searchToggleBtn.contains(event.target))) return;
+        closeSearch();
     });
 
-    // ==========================================
-    // 04. 스크롤 인터랙션 - 이미지 나타남 효과
-    // ==========================================
-    const observerOptions = {
-        root: null,         // 뷰포트 기준 감지
-        rootMargin: '0px',
-        threshold: 0.15     // 대상 타겟 요소가 15% 정도 화면에 보일 때 실행
-    };
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') closeSearch();
+    });
+}
+
+function initHeroSwiper() {
+    if (typeof Swiper === 'undefined' || !document.querySelector('.hero_slider')) return;
+
+    new Swiper('.hero_slider', {
+        loop: true,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        }
+    });
+}
+
+function initRevealAnimation() {
+    const revealTargets = document.querySelectorAll('.img_reveal_target');
+    if (!('IntersectionObserver' in window) || revealTargets.length === 0) {
+        revealTargets.forEach(function (target) {
+            target.classList.add('revealed');
+        });
+        return;
+    }
 
     const revealObserver = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
+        entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                // 스크롤 내렸을 때 클래스를 결합하여 CSS 트랜지션 모션 발동
                 entry.target.classList.add('revealed');
-                // 불필요한 중복 연산을 막기 위해 한번 나타난 뒤 감지 해제(unobserve) 처리
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-
-    // 스크롤 감지 대상 노드(베스트 상품 썸네일 등) 쿼리 셀렉팅 후 옵저버 바인딩
-    const revealTargets = document.querySelectorAll('.img_reveal_target');
-    revealTargets.forEach(target => {
-        revealObserver.observe(target);
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
     });
 
-    // ==========================================
-    // 05. 약속 섹션 리뷰 슬라이더
-    // ==========================================
-    const reviewSwiper = new Swiper('.review_slider', {
+    revealTargets.forEach(function (target) {
+        revealObserver.observe(target);
+    });
+}
+
+function initPromiseReviewSwiper() {
+    if (typeof Swiper === 'undefined' || !document.querySelector('.review_slider')) return;
+
+    new Swiper('.review_slider', {
         loop: true,
         slidesPerView: 1,
         spaceBetween: 20,
         autoplay: {
             delay: 4500,
-            disableOnInteraction: false,
+            disableOnInteraction: false
         },
         navigation: {
             nextEl: '.review-next',
-            prevEl: '.review-prev',
-        },
+            prevEl: '.review-prev'
+        }
+    });
+}
+
+function initDetailReviewSlider() {
+    const reviewList = document.querySelector('.review-card-list');
+    const reviewCards = reviewList ? Array.from(reviewList.querySelectorAll('.review-card')) : [];
+    const prevButton = document.querySelector('.review-prev');
+    const nextButton = document.querySelector('.review-next');
+
+    if (!reviewList || reviewCards.length === 0 || !prevButton || !nextButton) return;
+
+    let currentIndex = 0;
+
+    const getVisibleCount = function () {
+        if (window.matchMedia('(max-width: 1023px)').matches) return 1;
+        return 3;
+    };
+
+    const updateReviewPosition = function () {
+        const gap = parseFloat(window.getComputedStyle(reviewList).columnGap) || 0;
+        const cardWidth = reviewCards[0].getBoundingClientRect().width;
+        const maxIndex = Math.max(reviewCards.length - getVisibleCount(), 0);
+
+        currentIndex = Math.min(currentIndex, maxIndex);
+        reviewList.scrollTo({
+            left: currentIndex * (cardWidth + gap),
+            behavior: 'smooth'
+        });
+
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === maxIndex;
+    };
+
+    prevButton.addEventListener('click', function () {
+        currentIndex = Math.max(currentIndex - 1, 0);
+        updateReviewPosition();
     });
 
-});
+    nextButton.addEventListener('click', function () {
+        const maxIndex = Math.max(reviewCards.length - getVisibleCount(), 0);
+        currentIndex = Math.min(currentIndex + 1, maxIndex);
+        updateReviewPosition();
+    });
+
+    window.addEventListener('resize', updateReviewPosition);
+    updateReviewPosition();
+}

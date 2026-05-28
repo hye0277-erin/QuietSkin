@@ -1,0 +1,56 @@
+<header class="header" id="site-header">
+    <div class="inner_header">
+        <h1 class="logo"><a href="./index.html">QuietSkin</a></h1>
+
+        <button type="button" class="btn_m_menu" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-navigation">
+            <span class="material-icons" aria-hidden="true">menu</span>
+        </button>
+
+        <nav class="gnb_wrap" id="site-navigation" aria-label="주요 메뉴">
+            <ul class="gnb">
+                <li>
+                    <a href="./sub_brand_story.html" class="main_menu_link">Brand</a>
+                </li>
+                <li class="has_sub">
+                    <a href="./sub_all_products.html" class="main_menu_link" aria-expanded="false">Product</a>
+                    <ul class="sub_menu">
+                        <li><a href="./sub_all_products.html">All Products</a></li>
+                        <li><a href="./sub_products_view.html">Calming Ampoule</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="./sub_morning_routine.html" class="main_menu_link">Routine</a>
+                </li>
+                <li>
+                    <a href="./sub_photo_reviews.html" class="main_menu_link">Review</a>
+                </li>
+            </ul>
+
+            <div class="header_util" aria-label="회원 메뉴">
+                <button type="button" class="btn_search_toggle" aria-label="검색창 열기" aria-expanded="false">
+                    <span class="material-icons" aria-hidden="true">search</span>
+                </button>
+                <a href="./join.html" class="btn_util_icon" aria-label="로그인">
+                    <span class="material-icons" aria-hidden="true">person_outline</span>
+                </a>
+                <a href="#" class="btn_util_icon" aria-label="장바구니">
+                    <span class="material-icons" aria-hidden="true">shopping_bag</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="search_overlay_bar" aria-hidden="true">
+        <div class="inner_search">
+            <form action="#" method="get" class="search_form">
+                <input type="search" name="q" placeholder="원하는 성분이나 제품을 검색해보세요" class="search_input" aria-label="검색어 입력">
+                <button type="submit" class="btn_search_submit" aria-label="검색">
+                    <span class="material-icons" aria-hidden="true">search</span>
+                </button>
+            </form>
+            <button type="button" class="btn_search_close" aria-label="검색창 닫기">
+                <span class="material-icons" aria-hidden="true">close</span>
+            </button>
+        </div>
+    </div>
+</header>

@@ -1,18 +1,212 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8"><title>포토 리뷰 - QuietSkin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포토 리뷰 - QuietSkin</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <main class="inner_section">
-        <h2 style="font-size:36px; font-weight:700; margin-bottom:20px; color:#1a4d38;">Photo Reviews</h2>
-        <p style="color:#666; margin-bottom:40px;">실제 민감성 피부 사용자들이 직접 올린 정직한 전후 변화 갤러리</p>
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;">
-            <div style="background:#f4f6f4; aspect-ratio:1/1; border-radius:8px; padding:20px; display:flex; align-items:flex-end;"><strong>"홍조가 완전히 가라앉았어요"</strong></div>
-            <div style="background:#f4f6f4; aspect-ratio:1/1; border-radius:8px; padding:20px; display:flex; align-items:flex-end;"><strong>"가벼운데 정말 촉촉합니다."</strong></div>
-            <div style="background:#f4f6f4; aspect-ratio:1/1; border-radius:8px; padding:20px; display:flex; align-items:flex-end;"><strong>"트러블 유발 전혀 없네요."</strong></div>
-        </div>
+    <div data-include="header"></div>
+
+    <main class="photo-review-page">
+        <section class="photo-review-hero">
+            <div class="photo-review-inner">
+                <span class="photo-review-eyebrow">Photo Reviews</span>
+                <h2>민감한 피부가 직접 남긴<br>QuietSkin 사용 기록</h2>
+                <p>
+                    실제 사용자들이 남긴 피부 컨디션 변화와 루틴 후기를 모았습니다.
+                    사진 영역은 추후 업로드를 위해 비워두고, 리뷰 내용 중심으로 확인할 수 있도록 구성했습니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="photo-review-inner review-summary-section" aria-label="리뷰 요약">
+            <div class="review-total-card">
+                <strong>4.9 <span>/ 5</span></strong>
+                <div class="review-stars" aria-label="평점 5점 만점 중 4.9점">
+                    <span class="material-icons" aria-hidden="true">star</span>
+                    <span class="material-icons" aria-hidden="true">star</span>
+                    <span class="material-icons" aria-hidden="true">star</span>
+                    <span class="material-icons" aria-hidden="true">star</span>
+                    <span class="material-icons" aria-hidden="true">star</span>
+                    <em>1,230 Reviews</em>
+                </div>
+                <p>진정감, 산뜻한 흡수감, 메이크업 전 사용감에서 높은 만족도를 받았습니다.</p>
+            </div>
+
+            <div class="review-summary-grid">
+                <article>
+                    <strong>92%</strong>
+                    <span>붉어짐 완화 체감</span>
+                </article>
+                <article>
+                    <strong>88%</strong>
+                    <span>끈적임 없는 마무리 만족</span>
+                </article>
+                <article>
+                    <strong>94%</strong>
+                    <span>재구매 의향</span>
+                </article>
+            </div>
+        </section>
+
+        <section class="photo-review-inner photo-review-section" aria-label="포토 리뷰 목록">
+            <div class="section-top">
+                <h2>Best Photo Review</h2>
+                <div class="review-filter-list" aria-label="리뷰 필터">
+                    <button type="button" class="active">전체</button>
+                    <button type="button">민감피부</button>
+                    <button type="button">속건조</button>
+                    <button type="button">진정케어</button>
+                </div>
+            </div>
+
+            <div class="photo-review-grid">
+                <article class="photo-review-card">
+                    <div class="photo-empty-box" aria-label="리뷰 이미지 영역"></div>
+                    <div class="photo-review-content">
+                        <div class="review-stars">
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <strong>5.0</strong>
+                        </div>
+                        <h3>아침마다 올라오던 붉은기가 편안해졌어요.</h3>
+                        <p>
+                            세안 후 바로 바르면 따갑지 않고 수분감이 빠르게 들어오는 느낌이에요.
+                            메이크업 전에 사용해도 밀리지 않아서 매일 쓰고 있습니다.
+                        </p>
+                        <span>민감피부 · 20대 · 진정 앰플</span>
+                        <time datetime="2026-05-12">2026.05.12</time>
+                    </div>
+                </article>
+
+                <article class="photo-review-card">
+                    <div class="photo-empty-box" aria-label="리뷰 이미지 영역"></div>
+                    <div class="photo-review-content">
+                        <div class="review-stars">
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <strong>5.0</strong>
+                        </div>
+                        <h3>가볍지만 속당김이 덜해서 만족합니다.</h3>
+                        <p>
+                            보습 제품을 많이 바르면 답답한 편인데 이 루틴은 산뜻하게 마무리돼요.
+                            오후까지 피부가 건조하게 갈라지는 느낌이 줄었습니다.
+                        </p>
+                        <span>속건조 · 30대 · 토너 + 앰플</span>
+                        <time datetime="2026-05-08">2026.05.08</time>
+                    </div>
+                </article>
+
+                <article class="photo-review-card">
+                    <div class="photo-empty-box" aria-label="리뷰 이미지 영역"></div>
+                    <div class="photo-review-content">
+                        <div class="review-stars">
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <strong>5.0</strong>
+                        </div>
+                        <h3>피부가 예민한 날에도 부담 없이 발라요.</h3>
+                        <p>
+                            향이 강하지 않고 흡수가 빨라서 좋았습니다.
+                            피부가 뒤집어진 날에는 앰플을 한 번 더 레이어링하면 훨씬 편안해져요.
+                        </p>
+                        <span>복합성 · 30대 · 진정 집중</span>
+                        <time datetime="2026-04-30">2026.04.30</time>
+                    </div>
+                </article>
+
+                <article class="photo-review-card">
+                    <div class="photo-empty-box" aria-label="리뷰 이미지 영역"></div>
+                    <div class="photo-review-content">
+                        <div class="review-stars">
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star_half</span>
+                            <strong>4.8</strong>
+                        </div>
+                        <h3>끈적임이 적어서 남편도 같이 사용해요.</h3>
+                        <p>
+                            크림까지 바르면 피부 위에 보호막이 생기는 느낌인데 답답하지 않습니다.
+                            환절기에 특히 손이 자주 가는 제품이에요.
+                        </p>
+                        <span>건성 · 40대 · 장벽 케어</span>
+                        <time datetime="2026-04-24">2026.04.24</time>
+                    </div>
+                </article>
+
+                <article class="photo-review-card">
+                    <div class="photo-empty-box" aria-label="리뷰 이미지 영역"></div>
+                    <div class="photo-review-content">
+                        <div class="review-stars">
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <strong>5.0</strong>
+                        </div>
+                        <h3>베이스 메이크업 전에 쓰기 좋아요.</h3>
+                        <p>
+                            수분감은 있는데 번들거림이 적어서 선크림과 파운데이션이 잘 올라갑니다.
+                            아침 루틴으로 정착했어요.
+                        </p>
+                        <span>지성 · 20대 · 모닝 루틴</span>
+                        <time datetime="2026-04-19">2026.04.19</time>
+                    </div>
+                </article>
+
+                <article class="photo-review-card">
+                    <div class="photo-empty-box" aria-label="리뷰 이미지 영역"></div>
+                    <div class="photo-review-content">
+                        <div class="review-stars">
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <span class="material-icons" aria-hidden="true">star</span>
+                            <strong>5.0</strong>
+                        </div>
+                        <h3>피부 컨디션이 들쑥날쑥할 때 안정적이에요.</h3>
+                        <p>
+                            제품을 바꾸면 트러블이 잘 생기는 편인데 큰 자극 없이 사용할 수 있었습니다.
+                            특히 세안 후 당김이 줄어든 점이 마음에 들어요.
+                        </p>
+                        <span>민감피부 · 30대 · 데일리 케어</span>
+                        <time datetime="2026-04-15">2026.04.15</time>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="photo-review-inner review-guide-section" aria-label="리뷰 작성 안내">
+            <div>
+                <span class="photo-review-eyebrow">Review Guide</span>
+                <h3>리뷰를 남길 때 이런 내용을 함께 적어주세요</h3>
+            </div>
+            <ul>
+                <li><span class="material-icons" aria-hidden="true">check_circle</span>피부 타입과 가장 고민되는 피부 상태</li>
+                <li><span class="material-icons" aria-hidden="true">check_circle</span>사용한 제품과 루틴 단계</li>
+                <li><span class="material-icons" aria-hidden="true">check_circle</span>흡수감, 마무리감, 메이크업 전 사용감</li>
+                <li><span class="material-icons" aria-hidden="true">check_circle</span>사용 전후로 체감한 변화</li>
+            </ul>
+        </section>
     </main>
+
+    <div data-include="footer"></div>
+    <script src="./js/script.js"></script>
 </body>
 </html>
