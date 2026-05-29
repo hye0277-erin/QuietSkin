@@ -17,7 +17,7 @@
 
 /* RESET */
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: 'Paperozi', sans-serif; color: var(--text-main); background-color: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body { font-family: 'Paperozi', sans-serif; color: var(--text-main); background-color: #fff; line-height: 1.6; word-break: keep-all; overflow-wrap: break-word; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 body.no-scroll { overflow: hidden; }
 a { text-decoration: none; color: inherit; transition: var(--transition-base); }
 ul, li { list-style: none; }
@@ -42,6 +42,28 @@ img { max-width: 100%; display: block; }
 .sec_title { font-size: 28px; font-weight: 700; color: var(--primary-color); letter-spacing: 0.5px; }
 .btn_more { display: inline-flex; align-items: center; gap: 4px; font-size: 14px; color: var(--text-muted); font-weight: 400; }
 .btn_more:hover { color: var(--primary-color); }
+
+.btn_product_detail,
+.step-product-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 16px;
+    border: 1px solid #dce7e1;
+    border-radius: 8px;
+    color: var(--primary-color);
+    background: #fff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.btn_product_detail:hover,
+.step-product-link:hover {
+    color: #fff;
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+}
 
 
 /* ==========================================================================
@@ -199,6 +221,7 @@ img { max-width: 100%; display: block; }
 .p_hash { font-size: 12px; color: var(--accent-color); margin-top: 6px; font-weight: 400; }
 .p_price_box { margin-top: 10px; }
 .p_price_box .price { font-size: 16px; font-weight: 700; color: var(--text-main); }
+.btn_product_detail { margin-top: 14px; align-self: flex-start; }
 .p_review_summary { display: flex; align-items: center; gap: 4px; margin-top: 8px; font-size: 12px; }
 .p_review_summary .stars { color: #ffb800; }
 .p_review_summary .count { color: var(--text-light); }
@@ -218,6 +241,46 @@ img { max-width: 100%; display: block; }
 .sale_price { font-size: 18px; font-weight: 700; color: var(--primary-color); }
 
 .btn_bundle_link { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 600; color: var(--text-main); }
+
+.all-products-page .all-products-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.all-products-page h2 {
+    color: var(--primary-color);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.product-category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.product-category-filter button {
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid #dce7e1;
+    border-radius: 999px;
+    color: var(--text-muted);
+    background: #fff;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.product-category-filter button.active,
+.product-category-filter button:hover {
+    color: #fff;
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+}
 
 /* ==========================================================================
    04-1. PRODUCT VIEW: 제품 상세 페이지 전용 스타일
@@ -412,21 +475,31 @@ img { max-width: 100%; display: block; }
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    margin-top: -52px;
-    padding: 22px 28px;
+    width: calc(100% - 356px);
+    max-width: 790px;
+    margin: -52px auto 34px 0;
+    padding: 16px 18px;
     border: 1px solid #edf2ef;
-    border-radius: 14px;
+    border-radius: 12px;
     background: rgba(255,255,255,0.94);
     box-shadow: 0 20px 42px rgba(38,70,57,0.1);
 }
 
 .benefit-strip article {
     display: grid;
-    grid-template-columns: 48px 1fr;
+    grid-template-columns: 40px 1fr;
     align-items: center;
-    gap: 12px;
-    padding: 0 26px;
+    gap: 10px;
+    padding: 0 18px;
     border-right: 1px solid #edf2ef;
+}
+
+.benefit-strip article:first-child {
+    padding-left: 0;
+}
+
+.benefit-strip article:last-child {
+    padding-right: 0;
 }
 
 .benefit-strip article:last-child {
@@ -436,11 +509,13 @@ img { max-width: 100%; display: block; }
 .benefit-strip .material-icons {
     display: grid;
     place-items: center;
-    width: 48px;
-    height: 48px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     color: var(--primary-color);
-    background: #edf6f1;
+    border: 1px solid #dce9e2;
+    background: #f7fbf8;
+    font-size: 20px;
 }
 
 .benefit-strip strong,
@@ -450,12 +525,12 @@ img { max-width: 100%; display: block; }
 
 .benefit-strip strong {
     color: #25342f;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .benefit-strip span {
     color: var(--text-muted);
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .detail-body {
@@ -711,6 +786,7 @@ img { max-width: 100%; display: block; }
 .purchase-card {
     position: sticky;
     top: 96px;
+    margin-top: -166px;
     overflow: hidden;
     border: 1px solid #edf2ef;
     border-radius: 16px;
@@ -814,12 +890,12 @@ img { max-width: 100%; display: block; }
     font-weight: 700;
 }
 
-.cart-btn {
+.buy-btn {
     color: #fff;
     background: var(--primary-color);
 }
 
-.buy-btn {
+.cart-btn {
     color: var(--primary-color);
     border: 1px solid #b9ccc4;
     background: #fff;
@@ -895,7 +971,7 @@ img { max-width: 100%; display: block; }
     display: flex;
     align-items: center;
     gap: 1px;
-    color: var(--primary-color);
+    color: #ffb800;
 }
 
 .review-score-card .review-stars {
@@ -953,6 +1029,10 @@ img { max-width: 100%; display: block; }
 .review-card .review-stars {
     gap: 0;
     margin-bottom: 12px;
+}
+
+.review-card .review-stars .material-icons {
+    color: #ffb800;
 }
 
 .review-card .review-stars strong {
@@ -1390,7 +1470,7 @@ img { max-width: 100%; display: block; }
 
 .routine-sub-hero {
     padding: 82px 0 70px;
-    background: linear-gradient(180deg, #f6f9f6 0%, #fff 100%);
+    background: url("../images/morning_routine_bg.jpg") center / cover no-repeat;
 }
 
 .routine-eyebrow {
@@ -1467,11 +1547,23 @@ img { max-width: 100%; display: block; }
     background:
         linear-gradient(135deg, rgba(255,255,255,0.88), rgba(244,248,245,0.72)),
         #f5f8f6;
+    overflow: hidden;
 }
 
 .routine-blank-visual {
     min-height: 360px;
     border-radius: 12px;
+}
+
+.routine-blank-visual img,
+.step-empty-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.routine-blank-visual img {
+    min-height: 360px;
 }
 
 .routine-steps-section {
@@ -1546,6 +1638,11 @@ img { max-width: 100%; display: block; }
     line-height: 1.5;
 }
 
+.morning-step-card .step-product-link {
+    margin-top: 16px;
+    align-self: flex-start;
+}
+
 .routine-check-section {
     display: grid;
     grid-template-columns: 0.62fr 1.38fr;
@@ -1595,8 +1692,25 @@ img { max-width: 100%; display: block; }
 }
 
 .brand-story-hero {
+    position: relative;
     padding: 84px 0 74px;
-    background: linear-gradient(180deg, #f4f8f5 0%, #fff 100%);
+    background-image: url("../images/brand_bg_01.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.brand-story-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(255,255,255,0.64) 58%, rgba(255,255,255,0.28));
+}
+
+.brand-story-hero .brand-inner {
+    position: relative;
+    z-index: 1;
 }
 
 .brand-eyebrow {
@@ -1657,15 +1771,30 @@ img { max-width: 100%; display: block; }
 
 .brand-blank-visual {
     min-height: 380px;
-    border: 1px dashed #d9e3dd;
     border-radius: 12px;
+    border: 1px solid #e2ebe5;
     background:
-        linear-gradient(135deg, rgba(255,255,255,0.88), rgba(244,248,245,0.72)),
-        #f5f8f6;
+        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(244,248,245,0.18)),
+        #f4f8f5;
+    box-shadow: 0 18px 40px rgba(38,70,57,0.08);
 }
+
+.brand-origin-visual {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(244,248,245,0.18)),
+        url("../images/brand_01.png") center / cover no-repeat;
+}
+
+.brand-message-visual {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(244,248,245,0.18)),
+        url("../images/brand_02.png") center / cover no-repeat;
+}
+
 
 .brand-blank-visual.small {
     min-height: 300px;
+    background-position: center 42%;
 }
 
 .brand-value-section {
@@ -1791,7 +1920,7 @@ img { max-width: 100%; display: block; }
 
 .photo-review-hero {
     padding: 82px 0 70px;
-    background: linear-gradient(180deg, #f6f9f6 0%, #fff 100%);
+    background: url("../images/review_hero.jpg") center / cover no-repeat;
 }
 
 .photo-review-eyebrow {
@@ -1937,6 +2066,13 @@ img { max-width: 100%; display: block; }
     background:
         linear-gradient(135deg, rgba(255,255,255,0.88), rgba(244,248,245,0.72)),
         #f5f8f6;
+    overflow: hidden;
+}
+
+.photo-empty-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .photo-review-content {
@@ -2058,9 +2194,15 @@ img { max-width: 100%; display: block; }
         border-radius: 12px;
     }
 
-    .benefit-strip,
     .ingredient-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .benefit-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+        max-width: none;
+        margin-right: 0;
     }
 
     .ingredient-info-block .ingredient-grid {
@@ -2069,13 +2211,18 @@ img { max-width: 100%; display: block; }
     }
 
     .benefit-strip article {
+        border-right: 1px solid #edf2ef;
+        border-bottom: 0;
+        padding: 0 10px;
+    }
+
+    .benefit-strip article:last-child {
         border-right: 0;
-        border-bottom: 1px solid #edf2ef;
-        padding: 16px 8px;
     }
 
     .purchase-card {
         position: static;
+        margin-top: 0;
     }
 
     .review-layout,
@@ -2152,10 +2299,41 @@ img { max-width: 100%; display: block; }
         min-height: 320px;
     }
 
+    .hero-badges {
+        display: none;
+    }
+
     .hero-badges,
-    .benefit-strip,
     .ingredient-grid {
         grid-template-columns: 1fr;
+    }
+
+    .benefit-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        padding: 12px 10px;
+    }
+
+    .benefit-strip article {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        justify-items: center;
+        padding: 0 6px;
+        text-align: center;
+    }
+
+    .benefit-strip .material-icons {
+        width: 30px;
+        height: 30px;
+        font-size: 22px;
+    }
+
+    .benefit-strip strong {
+        font-size: 11px;
+    }
+
+    .benefit-strip span {
+        font-size: 10px;
+        line-height: 1.35;
     }
 
     .product-info-block .section-top,
@@ -2264,6 +2442,10 @@ img { max-width: 100%; display: block; }
         min-height: 240px;
     }
 
+    .routine-blank-visual img {
+        min-height: 240px;
+    }
+
     .brand-blank-visual,
     .brand-blank-visual.small {
         min-height: 240px;
@@ -2305,6 +2487,15 @@ img { max-width: 100%; display: block; }
 
     .photo-review-section .section-top {
         align-items: flex-start;
+    }
+
+    .all-products-page .all-products-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .product-category-filter {
+        justify-content: flex-start;
     }
 
     .review-filter-list {
@@ -2465,6 +2656,31 @@ img { max-width: 100%; display: block; }
 }
 .img_reveal_target.revealed { opacity: 1; transform: translateY(0) scale(1); }
 
+/* Body copy weight normalization */
+.product-detail-page .summary,
+.product-detail-page .sec_desc,
+.product-detail-page .check-list li,
+.product-detail-page .story-point-list span,
+.product-detail-page .ingredient-card span,
+.product-detail-page .purchase-body .eng-name,
+.product-detail-page .p-volume,
+.product-detail-page .benefit-small,
+.product-detail-page .delivery-box,
+.product-detail-page .review-card p,
+.product-detail-page .review-card span,
+.product-detail-page .review-card time,
+.product-detail-page .pair-product-card p,
+.morning-routine-page p,
+.morning-routine-page em,
+.brand-story-page p,
+.photo-review-page p,
+.photo-review-content > span,
+.photo-review-content time,
+.review-summary-grid span,
+.review-stars em {
+    font-weight: 400;
+}
+
 
 
 
@@ -2587,6 +2803,3 @@ img { max-width: 100%; display: block; }
     .ft_menu_group { gap: 60px; }
 
 }
-
-
-

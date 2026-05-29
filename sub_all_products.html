@@ -9,42 +9,54 @@
 </head>
 <body>
     <div data-include="header"></div>
-    <main class="inner_section">
-        <h2 style="font-size:36px; font-weight:700; margin-bottom:40px; color:#1a4d38;">All Products</h2>
+    <main class="inner_section all-products-page">
+        <div class="all-products-top">
+            <h2>All Products</h2>
+            <div class="product-category-filter" aria-label="상품 카테고리 필터">
+                <button type="button" class="active" data-filter="all">ALL</button>
+                <button type="button" data-filter="cleanser">CLEANSER</button>
+                <button type="button" data-filter="toner">TONER</button>
+                <button type="button" data-filter="ampoule">AMPOULE</button>
+                <button type="button" data-filter="cream">CREAM</button>
+                <button type="button" data-filter="set">SET</button>
+            </div>
+        </div>
         <div class="product_grid">
-            <div class="product_card">
+            <div class="product_card" data-category="ampoule">
                 <a href="./sub_products_view.html">
                     <div class="img_thumb img_reveal_target unique_badge_best">
-                        <img src="images/sec2_img02.jpg" alt="카밍 세럼">
+                        <img src="images/sec2_img02.jpg" alt="카밍 진정 앰플 30ml">
                         <button type="button" class="btn_cart_add" aria-label="장바구니 담기">
                             <span class="material-icons">add_shopping_cart</span>
                         </button>
                     </div>
                 </a>
                 <div class="product_info">
-                    <strong class="p_name">카밍 세럼</strong>
-                    <span class="p_volume">30ml</span>
+                    <strong class="p_name">카밍 진정 앰플 30ml</strong>
+                    <span class="p_volume">민감 피부를 위한 데일리 진정 앰플</span>
                     <span class="p_hash">#진정 #수분장벽 #민감피부</span>
                     <div class="p_price_box"><span class="price">32,000원</span></div>
+                    <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기</a>
                 </div>
             </div>
-            <div class="product_card">
+            <div class="product_card" data-category="toner">
                 <a href="./sub_products_view.html">
                 <div class="img_thumb img_reveal_target">
-                    <img src="images/sec2_img03.jpg" alt="카밍 로션">
+                    <img src="images/sec2_img03.jpg" alt="카밍 토너">
                     <button type="button" class="btn_cart_add" aria-label="장바구니 담기">
                         <span class="material-icons">add_shopping_cart</span>
                     </button>
                 </div>
                 </a>
                 <div class="product_info">
-                    <strong class="p_name">카밍 로션</strong>
-                    <span class="p_volume">100ml</span>
-                    <span class="p_hash">#유수분밸런스 #민감보습</span>
+                    <strong class="p_name">카밍 토너</strong>
+                    <span class="p_volume">150ml</span>
+                    <span class="p_hash">#피부결정돈 #민감보습</span>
                     <div class="p_price_box"><span class="price">24,000원</span></div>
+                    <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기</a>
                 </div>
             </div>
-            <div class="product_card">
+            <div class="product_card" data-category="cleanser">
                 <a href="./sub_products_view.html">
                     <div class="img_thumb img_reveal_target">
                         <img src="images/sec2_img04.jpg" alt="카밍 폼 클렌저">
@@ -56,11 +68,12 @@
                 <div class="product_info">
                     <strong class="p_name">카밍 폼 클렌저</strong>
                     <span class="p_volume">150ml</span>
-                    <span class="p_hash">#자극무 유황진정 #약산성</span>
+                    <span class="p_hash">#저자극세안 #약산성</span>
                     <div class="p_price_box"><span class="price">20,000원</span></div>
+                    <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기</a>
                 </div>
             </div>
-            <div class="product_card">
+            <div class="product_card" data-category="cream">
                 <a href="./sub_products_view.html">
                 <div class="img_thumb img_reveal_target">
                     <img src="images/sec2_img05.jpg" alt="카밍 모이스처라이징 크림">
@@ -74,6 +87,41 @@
                     <span class="p_volume">50ml</span>
                     <span class="p_hash">#장벽강화 #보습지속</span>
                     <div class="p_price_box"><span class="price">28,000원</span></div>
+                    <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기</a>
+                </div>
+            </div>
+            <div class="product_card" data-category="cream">
+                <a href="./sub_products_view.html">
+                <div class="img_thumb img_reveal_target">
+                    <img src="images/product_suncream.png" alt="카밍 선크림">
+                    <button type="button" class="btn_cart_add" aria-label="장바구니 담기">
+                        <span class="material-icons">add_shopping_cart</span>
+                    </button>
+                </div>
+                </a>
+                <div class="product_info">
+                    <strong class="p_name">카밍 선크림</strong>
+                    <span class="p_volume">50ml</span>
+                    <span class="p_hash">#데일리보호 #산뜻마무리</span>
+                    <div class="p_price_box"><span class="price">28,000원</span></div>
+                    <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기</a>
+                </div>
+            </div>
+            <div class="product_card" data-category="set">
+                <a href="./sub_products_view.html">
+                <div class="img_thumb img_reveal_target">
+                    <img src="images/product_all.jpg" alt="QuietSkin 진정 루틴 세트">
+                    <button type="button" class="btn_cart_add" aria-label="장바구니 담기">
+                        <span class="material-icons">add_shopping_cart</span>
+                    </button>
+                </div>
+                </a>
+                <div class="product_info">
+                    <strong class="p_name">진정 루틴 세트</strong>
+                    <span class="p_volume">앰플, 로션, 크림 구성</span>
+                    <span class="p_hash">#루틴케어 #세트할인</span>
+                    <div class="p_price_box"><span class="price">75,600원</span></div>
+                    <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기</a>
                 </div>
             </div>
             

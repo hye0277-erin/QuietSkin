@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initRevealAnimation();
         initPromiseReviewSwiper();
         initDetailReviewSlider();
+        initProductCategoryFilter();
     });
 });
 
@@ -301,4 +302,27 @@ function initDetailReviewSlider() {
 
     window.addEventListener('resize', updateReviewPosition);
     updateReviewPosition();
+}
+
+function initProductCategoryFilter() {
+    const filterWrap = document.querySelector('.product-category-filter');
+    const productCards = document.querySelectorAll('.product_card[data-category]');
+
+    if (!filterWrap || productCards.length === 0) return;
+
+    filterWrap.addEventListener('click', function (event) {
+        const button = event.target.closest('button[data-filter]');
+        if (!button) return;
+
+        const selectedFilter = button.dataset.filter;
+
+        filterWrap.querySelectorAll('button').forEach(function (item) {
+            item.classList.toggle('active', item === button);
+        });
+
+        productCards.forEach(function (card) {
+            const isVisible = selectedFilter === 'all' || card.dataset.category === selectedFilter;
+            card.hidden = !isVisible;
+        });
+    });
 }
