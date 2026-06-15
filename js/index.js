@@ -1,52 +1,52 @@
-/* QuietSkin 2026 Index — index.js */
-
 document.addEventListener('DOMContentLoaded', () => {
-
-    /* ── 1. 히어로 비디오 전환 ── */
     const heroVideo = document.querySelector('.qs-hero__video');
-    const thumbBtns = document.querySelectorAll('.thumb-btn');
+    const thumbBtns = Array.from(document.querySelectorAll('.thumb-btn'));
     const heroContent = document.querySelector('.qs-hero__content');
     const heroBadges = document.querySelector('.qs-hero__badges');
 
-    function updateHeroContent(btn) {
-        const d = btn.dataset;
+    function playVideo(video) {
+        if (!video) return;
+        video.muted = true;
+        video.playsInline = true;
+        video.play().catch(() => {});
+    }
 
-        /* 텍스트 콘텐츠 교체 */
+    function updateHeroContent(btn) {
+        const data = btn.dataset;
+
         if (heroContent) {
-            heroContent.querySelector('.qs-hero__eyebrow').textContent = d.eyebrow || '';
-            heroContent.querySelector('.l1').textContent = d.line1 || '';
-            heroContent.querySelector('.l2').textContent = d.line2 || '';
-            heroContent.querySelector('.l3').textContent = d.line3 || '';
-            heroContent.querySelector('.qs-hero__sub').textContent = d.sub || '';
+            heroContent.querySelector('.qs-hero__eyebrow').textContent = data.eyebrow || '';
+            heroContent.querySelector('.l1').textContent = data.line1 || '';
+            heroContent.querySelector('.l2').textContent = data.line2 || '';
+            heroContent.querySelector('.l3').textContent = data.line3 || '';
+            heroContent.querySelector('.qs-hero__sub').textContent = data.sub || '';
 
             const actions = heroContent.querySelector('.qs-hero__actions');
             const [primary, ghost] = actions.querySelectorAll('a');
-            primary.textContent = d.ctaPrimary || '제품 탐색하기';
-            primary.href = d.ctaPrimaryHref || 'sub_all_products.html';
-            ghost.textContent = d.ctaGhost || '브랜드 스토리';
-            ghost.href = d.ctaGhostHref || 'sub_brand_story.html';
-        }
+            primary.textContent = data.ctaPrimary || '제품 탐색하기';
+            primary.href = data.ctaPrimaryHref || 'sub_all_products.html';
+            ghost.textContent = data.ctaGhost || '브랜드 스토리';
+            ghost.href = data.ctaGhostHref || 'sub_brand_story.html';
 
-        /* 배지 교체 */
-        if (heroBadges) {
-            const badges = heroBadges.querySelectorAll('.hero-badge');
-            [[d.badge1Strong, d.badge1Span],
-             [d.badge2Strong, d.badge2Span],
-             [d.badge3Strong, d.badge3Span]].forEach(([strong, span], i) => {
-                if (!badges[i]) return;
-                badges[i].querySelector('strong').textContent = strong || '';
-                badges[i].querySelector('span').textContent = span || '';
+            const lines = heroContent.querySelectorAll('.qs-hero__headline .line');
+            lines.forEach(line => { line.style.animation = 'none'; });
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    lines.forEach(line => { line.style.animation = ''; });
+                });
             });
         }
 
-        /* 라인 애니메이션 재실행 */
-        if (heroContent) {
-            const lines = heroContent.querySelectorAll('.qs-hero__headline .line');
-            lines.forEach(l => { l.style.animation = 'none'; });
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    lines.forEach(l => { l.style.animation = ''; });
-                });
+        if (heroBadges) {
+            const badges = heroBadges.querySelectorAll('.hero-badge');
+            [
+                [data.badge1Strong, data.badge1Span],
+                [data.badge2Strong, data.badge2Span],
+                [data.badge3Strong, data.badge3Span],
+            ].forEach(([strong, span], index) => {
+                if (!badges[index]) return;
+                badges[index].querySelector('strong').textContent = strong || '';
+                badges[index].querySelector('span').textContent = span || '';
             });
         }
     }
@@ -54,75 +54,89 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroVideo && thumbBtns.length) {
         let currentIndex = 0;
 
-        const switchTo = (idx) => {
-            const btn = Array.from(thumbBtns)[idx];
+        const switchTo = (index) => {
+            const btn = thumbBtns[index];
             if (!btn) return;
 
-            /* 콘텐츠 페이드 */
-            heroContent && (heroContent.style.opacity = '0');
+            if (heroContent) heroContent.style.opacity = '0';
             heroVideo.style.opacity = '0';
 
             setTimeout(() => {
-                heroVideo.src = btn.dataset.video;
+                const source = heroVideo.querySelector('source');
+                if (source) source.src = btn.dataset.video;
+                else heroVideo.src = btn.dataset.video;
+
                 heroVideo.load();
-                heroVideo.play().catch(() => {});
+                playVideo(heroVideo);
                 heroVideo.style.opacity = '1';
 
                 updateHeroContent(btn);
-                heroContent && (heroContent.style.opacity = '1');
+                if (heroContent) heroContent.style.opacity = '1';
             }, 300);
 
-            thumbBtns.forEach(b => b.classList.remove('active'));
+            thumbBtns.forEach(item => item.classList.remove('active'));
             btn.classList.add('active');
-            currentIndex = idx;
+            currentIndex = index;
         };
 
-        thumbBtns.forEach((btn, idx) => {
-            btn.addEventListener('click', () => switchTo(idx));
+        thumbBtns.forEach((btn, index) => {
+            btn.addEventListener('click', () => switchTo(index));
         });
 
-        /* 자동 순환 — 4초 */
         setInterval(() => {
             switchTo((currentIndex + 1) % thumbBtns.length);
         }, 4000);
     }
 
-    /* ── 2. qs-reveal 스크롤 등장 ── */
+    document.querySelectorAll('video').forEach(playVideo);
+
+    document.querySelectorAll('.card-wish').forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isActive = button.classList.toggle('is-active');
+            button.setAttribute('aria-pressed', String(isActive));
+
+            const icon = button.querySelector('.material-icons');
+            if (icon) icon.textContent = isActive ? 'favorite' : 'favorite_border';
+        });
+    });
+
     const revealEls = document.querySelectorAll('.qs-reveal');
     if (revealEls.length) {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-        );
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
         revealEls.forEach(el => observer.observe(el));
     }
 
-    /* ── 3. 루틴 오벌 슬라이더 ── */
     const routineEl = document.querySelector('.routine-slider');
-    if (routineEl) {
+    const isMobileRoutine = window.matchMedia('(max-width: 767px)').matches;
+    if (routineEl && isMobileRoutine) {
+        routineEl.querySelectorAll('.routine-oval-overlay').forEach(overlay => {
+            overlay.style.background = 'rgba(10,20,14,0.42)';
+        });
+    }
 
-        /* transform/shadow → CSS .swiper-slide-active가 전담
-           overlay 밝기만 JS에서 처리 */
+    if (routineEl && !isMobileRoutine && typeof Swiper !== 'undefined') {
         const updateSlides = (swiper) => {
             swiper.slides.forEach(slide => {
-                const overlay  = slide.querySelector('.routine-oval-overlay');
+                const overlay = slide.querySelector('.routine-oval-overlay');
                 const isActive = slide.classList.contains('swiper-slide-active');
-                if (overlay) {
-                    overlay.style.background = isActive
-                        ? 'rgba(10,20,14,0.04)'
-                        : 'rgba(10,20,14,0.58)';
-                }
+                if (!overlay) return;
+                overlay.style.background = isActive
+                    ? 'rgba(10,20,14,0.34)'
+                    : 'rgba(10,20,14,0.58)';
             });
         };
 
-        const rs = new Swiper('.routine-slider', {
+        const routineSwiper = new Swiper('.routine-slider', {
             slidesPerView: 3,
             spaceBetween: 0,
             loop: true,
@@ -134,22 +148,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
             },
+            breakpoints: {
+                0: { slidesPerView: 1, spaceBetween: 16 },
+                640: { slidesPerView: 2, spaceBetween: 12 },
+                900: { slidesPerView: 3, spaceBetween: 0 },
+            },
             on: {
-                init:                    updateSlides,
-                slideChange:             updateSlides,
-                slideChangeTransitionEnd: updateSlides,  /* 루프 점프 후 재보정 */
+                init: updateSlides,
+                slideChange: updateSlides,
+                slideChangeTransitionEnd: updateSlides,
             },
         });
 
-        document.querySelector('.routine-prev')
-            ?.addEventListener('click', () => rs.slidePrev());
-        document.querySelector('.routine-next')
-            ?.addEventListener('click', () => rs.slideNext());
+        document.querySelector('.routine-prev')?.addEventListener('click', () => routineSwiper.slidePrev());
+        document.querySelector('.routine-next')?.addEventListener('click', () => routineSwiper.slideNext());
     }
 
-    /* ── 5. 리뷰 슬라이더 (새 선택자) ── */
     const reviewSliderEl = document.querySelector('.review_slider_new');
-    if (reviewSliderEl) {
+    if (reviewSliderEl && typeof Swiper !== 'undefined') {
         const reviewSwiper = new Swiper('.review_slider_new', {
             slidesPerView: 1,
             spaceBetween: 20,
@@ -160,43 +176,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 type: 'bullets',
             },
             breakpoints: {
-                640:  { slidesPerView: 1.5, centeredSlides: true },
-                900:  { slidesPerView: 2, centeredSlides: false },
+                640: { slidesPerView: 1.5, centeredSlides: true },
+                900: { slidesPerView: 2, centeredSlides: false },
                 1100: { slidesPerView: 3, centeredSlides: false },
             },
             autoplay: { delay: 5000, disableOnInteraction: false },
         });
 
-        const prevBtn = document.querySelector('.rev-prev');
-        const nextBtn = document.querySelector('.rev-next');
-        if (prevBtn) prevBtn.addEventListener('click', () => reviewSwiper.slidePrev());
-        if (nextBtn) nextBtn.addEventListener('click', () => reviewSwiper.slideNext());
+        document.querySelector('.rev-prev')?.addEventListener('click', () => reviewSwiper.slidePrev());
+        document.querySelector('.rev-next')?.addEventListener('click', () => reviewSwiper.slideNext());
     }
 
-    /* ── 4. narrative-stats 카운트업 애니메이션 ── */
     const stats = document.querySelectorAll('.n-stat strong');
     if (stats.length) {
-        const parseValue = el => {
-            const text = el.childNodes[0].nodeValue.trim();
-            return parseFloat(text.replace(/,/g, ''));
-        };
+        const parseValue = el => parseFloat(el.childNodes[0].nodeValue.trim().replace(/,/g, ''));
         const formatValue = (el, val) => {
             const suffix = el.querySelector('span');
             const suffixText = suffix ? suffix.outerHTML : '';
             const raw = el.childNodes[0].nodeValue.trim();
-            const isComma = raw.includes(',');
-            const decimals = raw.includes('.') ? raw.split('.')[1]?.replace(/\D/g, '').length : 0;
-            let num = decimals > 0 ? val.toFixed(decimals) : Math.round(val);
-            if (isComma) num = Number(num).toLocaleString('ko-KR');
+            let num = raw.includes('.') ? val.toFixed(raw.split('.')[1].replace(/\D/g, '').length) : Math.round(val);
+            if (raw.includes(',')) num = Number(num).toLocaleString('ko-KR');
             el.innerHTML = num + suffixText;
         };
 
         const countUp = el => {
             const target = parseValue(el);
-            const duration = 1600;
             const start = performance.now();
             const tick = now => {
-                const progress = Math.min((now - start) / duration, 1);
+                const progress = Math.min((now - start) / 1600, 1);
                 const ease = 1 - Math.pow(1 - progress, 3);
                 formatValue(el, target * ease);
                 if (progress < 1) requestAnimationFrame(tick);
@@ -209,56 +216,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (statsSection) {
             let fired = false;
             const statObserver = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting && !fired) {
-                    fired = true;
-                    stats.forEach(el => countUp(el));
-                    statObserver.disconnect();
-                }
+                if (!entries[0].isIntersecting || fired) return;
+                fired = true;
+                stats.forEach(countUp);
+                statObserver.disconnect();
             }, { threshold: 0.5 });
             statObserver.observe(statsSection);
         }
     }
 
-    /* ── 5. 뉴스레터 폼 ── */
-
     const nlForm = document.querySelector('.nl-form');
     if (nlForm) {
-        nlForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+        nlForm.addEventListener('submit', (event) => {
+            event.preventDefault();
             const input = nlForm.querySelector('.nl-input');
-            if (input && input.value) {
-                const btn = nlForm.querySelector('.nl-btn');
-                btn.textContent = '구독 완료!';
-                btn.style.background = '#2d7a5a';
-                input.value = '';
-                setTimeout(() => {
-                    btn.textContent = '구독하기';
-                    btn.style.background = '';
-                }, 3000);
-            }
+            const btn = nlForm.querySelector('.nl-btn');
+            if (!input || !btn || !input.value) return;
+
+            btn.textContent = '구독 완료!';
+            btn.style.background = '#2d7a5a';
+            input.value = '';
+
+            setTimeout(() => {
+                btn.textContent = '구독하기';
+                btn.style.background = '';
+            }, 3000);
         });
     }
-
-    /* ── 5. 헤더 스크롤 투명→불투명 ── */
-    const header = document.querySelector('.header');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            header.classList.toggle('is-scrolled', window.scrollY > 60);
-        }, { passive: true });
-    }
-
-    /* ── 6. 루틴 스텝 — 모바일 전체 표시 복구 ── */
-    function handleRoutineVisibility() {
-        const steps = document.querySelectorAll('.routine-step');
-        if (window.innerWidth < 768) {
-            steps.forEach((s, i) => {
-                s.style.display = i < 5 ? '' : 'none';
-            });
-        } else {
-            steps.forEach(s => { s.style.display = ''; });
-        }
-    }
-    handleRoutineVisibility();
-    window.addEventListener('resize', handleRoutineVisibility, { passive: true });
-
 });

@@ -147,7 +147,7 @@ function initNavigation() {
 }
 
 function initSearch() {
-    const searchToggleBtn = document.querySelector('.btn_search_toggle');
+    const searchToggleBtns = document.querySelectorAll('.btn_search_toggle');
     const searchCloseBtn  = document.querySelector('.btn_search_close');
     const searchOverlay   = document.querySelector('.search_overlay');
     const searchInput     = document.querySelector('.search_input');
@@ -158,7 +158,7 @@ function initSearch() {
         searchOverlay.classList.add('open');
         searchOverlay.setAttribute('aria-hidden', 'false');
         document.body.classList.add('no-scroll');
-        if (searchToggleBtn) searchToggleBtn.setAttribute('aria-expanded', 'true');
+        searchToggleBtns.forEach(btn => btn.setAttribute('aria-expanded', 'true'));
         if (searchInput) setTimeout(() => searchInput.focus(), 200);
     };
 
@@ -167,11 +167,11 @@ function initSearch() {
         searchOverlay.classList.remove('open');
         searchOverlay.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('no-scroll');
-        if (searchToggleBtn) searchToggleBtn.setAttribute('aria-expanded', 'false');
+        searchToggleBtns.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
         if (searchInput) searchInput.value = '';
     };
 
-    if (searchToggleBtn) searchToggleBtn.addEventListener('click', openSearch);
+    searchToggleBtns.forEach(btn => btn.addEventListener('click', openSearch));
     if (searchCloseBtn)  searchCloseBtn.addEventListener('click', closeSearch);
 
     /* 추천 태그 클릭 → 검색창에 삽입 후 포커스 */
