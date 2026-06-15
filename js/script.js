@@ -75,9 +75,15 @@ function initNavigation() {
         });
     };
 
+    const isIndexPage = document.body.dataset.page === 'index';
+
     const updateHeaderState = function () {
         if (!header) return;
-        header.classList.toggle('is-scrolled', window.scrollY > 0);
+        if (!isIndexPage) {
+            header.classList.add('is-scrolled');
+            return;
+        }
+        header.classList.toggle('is-scrolled', window.scrollY > 60);
     };
 
     menuLinks.forEach(function (link) {
@@ -142,51 +148,55 @@ function initNavigation() {
 
 function initSearch() {
     const searchToggleBtn = document.querySelector('.btn_search_toggle');
-    const searchCloseBtn = document.querySelector('.btn_search_close');
-    const searchOverlay = document.querySelector('.search_overlay_bar');
-    const searchInput = document.querySelector('.search_input');
-    const searchForm = document.querySelector('.search_form');
+    const searchCloseBtn  = document.querySelector('.btn_search_close');
+    const searchOverlay   = document.querySelector('.search_overlay');
+    const searchInput     = document.querySelector('.search_input');
+    const searchForm      = document.querySelector('.search_form');
 
-    const closeSearch = function () {
-        if (!searchOverlay || !searchToggleBtn) return;
-        searchOverlay.classList.remove('open');
-        searchOverlay.setAttribute('aria-hidden', 'true');
-        searchToggleBtn.setAttribute('aria-expanded', 'false');
+    const openSearch = function () {
+        if (!searchOverlay) return;
+        searchOverlay.classList.add('open');
+        searchOverlay.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+        if (searchToggleBtn) searchToggleBtn.setAttribute('aria-expanded', 'true');
+        if (searchInput) setTimeout(() => searchInput.focus(), 200);
     };
 
-    if (searchToggleBtn && searchOverlay) {
-        searchToggleBtn.addEventListener('click', function () {
-            searchOverlay.classList.add('open');
-            searchOverlay.setAttribute('aria-hidden', 'false');
-            this.setAttribute('aria-expanded', 'true');
+    const closeSearch = function () {
+        if (!searchOverlay) return;
+        searchOverlay.classList.remove('open');
+        searchOverlay.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('no-scroll');
+        if (searchToggleBtn) searchToggleBtn.setAttribute('aria-expanded', 'false');
+        if (searchInput) searchInput.value = '';
+    };
+
+    if (searchToggleBtn) searchToggleBtn.addEventListener('click', openSearch);
+    if (searchCloseBtn)  searchCloseBtn.addEventListener('click', closeSearch);
+
+    /* 추천 태그 클릭 → 검색창에 삽입 후 포커스 */
+    document.querySelectorAll('.search_tags button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
             if (searchInput) {
-                setTimeout(function () {
-                    searchInput.focus();
-                }, 300);
+                searchInput.value = this.textContent;
+                searchInput.focus();
             }
         });
-    }
-
-    if (searchCloseBtn && searchOverlay) {
-        searchCloseBtn.addEventListener('click', function () {
-            closeSearch();
-        });
-    }
-
-    if (searchForm) {
-        searchForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-        });
-    }
-
-    document.addEventListener('click', function (event) {
-        if (!searchOverlay || !searchOverlay.classList.contains('open')) return;
-        if (searchOverlay.contains(event.target) || (searchToggleBtn && searchToggleBtn.contains(event.target))) return;
-        closeSearch();
     });
 
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') closeSearch();
+    if (searchForm) {
+        searchForm.addEventListener('submit', function (e) { e.preventDefault(); });
+    }
+
+    /* 오버레이 배경 클릭 시 닫기 */
+    if (searchOverlay) {
+        searchOverlay.addEventListener('click', function (e) {
+            if (e.target === searchOverlay) closeSearch();
+        });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeSearch();
     });
 }
 

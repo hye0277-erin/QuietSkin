@@ -3,15 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuietSkin - 자극 없이 회복하는 클린 스킨케어</title>
+    <title>QuietSkin — 자극 없이 회복하는 클린 스킨케어</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/index.css">
 </head>
-<body>
+<body data-page="index">
     <div data-include="header"></div>
 
     <main id="main_container">
+
+        <!-- =============================================
+             SECTION 1 : FULLSCREEN VIDEO HERO
+        ============================================= -->
+        <section class="qs-hero" id="hero">
+            <div class="qs-hero__video-wrap">
+                <video class="qs-hero__video" src="./images/model.mp4" autoplay loop muted playsinline></video>
+                <div class="qs-hero__overlay"></div>
+            </div>
+
+            <!-- 스크롤 유도 인디케이터 -->
+            <div class="qs-hero__scroll-hint">
+                <span class="scroll-label">Scroll</span>
+                <span class="scroll-line"></span>
+            </div>
+
+            <!-- 히어로 텍스트 -->
+            <div class="qs-hero__content">
+                <p class="qs-hero__eyebrow">2026 Clean Beauty</p>
+                <h1 class="qs-hero__headline">
+                    <span class="line l1">조용히,</span>
+                    <span class="line l2">깊이 회복되는</span>
+                    <span class="line l3">피부</span>
+                </h1>
+                <p class="qs-hero__sub">자극 없이 피부 본연의 힘으로 돌아오는 방법</p>
+                <div class="qs-hero__actions">
+                    <a href="sub_all_products.html" class="btn-hero-primary">제품 탐색하기</a>
+                    <a href="sub_brand_story.html" class="btn-hero-ghost">브랜드 스토리</a>
+                </div>
+            </div>
+
+            <!-- 플로팅 배지 -->
+            <div class="qs-hero__badges">
+                <div class="hero-badge">
+                    <strong>EWG</strong>
+                    <span>Green Grade</span>
+                </div>
+                <div class="hero-badge">
+                    <strong>0.00</strong>
+                    <span>피부 자극 지수</span>
+                </div>
+                <div class="hero-badge">
+                    <strong>98%</strong>
+                    <span>사용자 만족</span>
+                </div>
+            </div>
+
+            <!-- 슬라이드 썸네일 -->
+            <div class="qs-hero__thumbs">
+                <button class="thumb-btn active"
+                    data-video="./images/model.mp4"
+                    data-label="카밍 앰플"
+                    data-eyebrow="2026 Clean Beauty"
+                    data-line1="조용히,"
+                    data-line2="깊이 회복되는"
+                    data-line3="피부"
+                    data-sub="자극 없이 피부 본연의 힘으로 돌아오는 방법"
+                    data-cta-primary="제품 탐색하기"
+                    data-cta-primary-href="sub_all_products.html"
+                    data-cta-ghost="브랜드 스토리"
+                    data-cta-ghost-href="sub_brand_story.html"
+                    data-badge1-strong="EWG" data-badge1-span="Green Grade"
+                    data-badge2-strong="0.00" data-badge2-span="피부 자극 지수"
+                    data-badge3-strong="98%" data-badge3-span="사용자 만족">
+                    <span class="thumb-dot"></span>
+                    <span class="thumb-label">카밍 앰플</span>
+                </button>
+                <button class="thumb-btn"
+                    data-video="./images/serum.mp4"
+                    data-label="세럼"
+                    data-eyebrow="Calming Serum"
+                    data-line1="피부 장벽을"
+                    data-line2="조용히"
+                    data-line3="되살립니다"
+                    data-sub="병풀 추출물 85%와 5중 세라마이드로 손상된 장벽을 회복"
+                    data-cta-primary="세럼 자세히 보기"
+                    data-cta-primary-href="sub_products_view.html"
+                    data-cta-ghost="성분 알아보기"
+                    data-cta-ghost-href="sub_brand_story.html"
+                    data-badge1-strong="85%" data-badge1-span="병풀 추출물"
+                    data-badge2-strong="5중" data-badge2-span="세라마이드"
+                    data-badge3-strong="72h" data-badge3-span="보습 지속">
+                    <span class="thumb-dot"></span>
+                    <span class="thumb-label">세럼</span>
+                </button>
+                <button class="thumb-btn"
+                    data-video="./images/toner.mp4"
+                    data-label="토너"
+                    data-eyebrow="Hydrating Toner"
+                    data-line1="수분으로"
+                    data-line2="채워지는"
+                    data-line3="맑은 피부"
+                    data-sub="히알루론산 5종이 피부 속 깊이 수분을 가득 채웁니다"
+                    data-cta-primary="토너 자세히 보기"
+                    data-cta-primary-href="sub_products_view.html"
+                    data-cta-ghost="전체 제품 보기"
+                    data-cta-ghost-href="sub_all_products.html"
+                    data-badge1-strong="5종" data-badge1-span="히알루론산"
+                    data-badge2-strong="pH 5.5" data-badge2-span="약산성 포뮬러"
+                    data-badge3-strong="무향" data-badge3-span="무자극 설계">
+                    <span class="thumb-dot"></span>
+                    <span class="thumb-label">토너</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- =============================================
+             SECTION 2 : TRUST BAR
+        ============================================= -->
+        <section class="qs-trust">
+            <div class="qs-trust__inner">
+                <div class="trust-item">
+                    <div class="trust-icon-circle">
+                        <span class="material-icons">local_shipping</span>
         
         <section class="sec_hero_swiper">
             <div class="swiper hero_slider">
@@ -60,6 +175,19 @@
                             </div> -->
                         </div>
                     </div>
+                    <div>
+                        <strong>무료배송</strong>
+                        <span>30,000원 이상 구매 시</span>
+                    </div>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <div class="trust-icon-circle">
+                        <span class="material-icons">verified_user</span>
+                    </div>
+                    <div>
+                        <strong>피부 자극 0.00</strong>
+                        <span>민감성 피부 임상 완료</span>
                     <div class="swiper-slide hero_node bg_node_03">
                         <div class="hero_img_box">
                             <video src="./images/model.mp4" autoplay loop muted playsinline></video>
@@ -75,59 +203,137 @@
                                     <span class="benefit_item"><span class="material-icons">confirmation_number</span> 회원가입 혜택 5,000원 쿠폰</span>
                                 </div>
                             </div>
-                           <!--  <div class="floating_badges">
-                                <div class="badge_item">재활용률<br>100% 용기</div>
-                                <div class="badge_item">업사이클<br>병풀 추출물</div>
-                                <div class="badge_item">소이잉크<br>인쇄 패키지</div>
-                            </div> -->
+                          
                         </div>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-
-            <div class="hero_points_bar">
-                <div class="inner_bar">
-                    <div class="point_item">
-                        <span class="material-icons">spa</span>
-                        <p><strong>민감 피부 진정 케어</strong>병풀 추출물 85% 함유</p>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <div class="trust-icon-circle">
+                        <span class="material-icons">eco</span>
                     </div>
-                    <div class="point_item">
-                        <span class="material-icons">opacity</span>
-                        <p><strong>피부 장벽 강화</strong>5중 세라마이드 배합</p>
+                    <div>
+                        <strong>클린 비건 포뮬러</strong>
+                        <span>EWG 그린 등급 전 성분</span>
                     </div>
-                    <div class="point_item">
-                        <span class="material-icons">hourglass_empty</span>
-                        <p><strong>72시간 보습 지속</strong>임상 테스트 검증 완료</p>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <div class="trust-icon-circle">
+                        <span class="material-icons">recycling</span>
                     </div>
-                    <div class="point_item">
-                        <span class="material-icons">verified_user</span>
-                        <p><strong>피부 자극 테스트 완료</strong>민감성 피부 자극도 0.00</p>
+                    <div>
+                        <strong>친환경 패키징</strong>
+                        <span>100% PCR 용기 사용</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="sec_best_products">
-            <div class="inner_section">
-                <div class="sec_header">
+        <!-- =============================================
+             SECTION 3 : NEW CONCEPT — 피부 회복 내러티브
+        ============================================= -->
+        <section class="qs-narrative">
+            <div class="qs-narrative__inner">
+                <div class="narrative-label">Why QuietSkin</div>
+                <h2 class="narrative-title">
+                    한 번 써본 사람은<br>
+                    <em>다시 찾게 됩니다</em>
+                </h2>
+                <p class="narrative-body">
+                    자극적인 성분 없이도 피부가 이렇게 달라질 수 있다는 걸,<br>
+                    3,500명이 직접 경험했습니다.<br>
+                    병풀 추출물 85%가 붉어진 피부를 진정시키고,<br>
+                    5중 세라마이드가 무너진 장벽을 하루 만에 되돌립니다.
+                </p>
+                <div class="narrative-stats">
+                    <div class="n-stat">
+                        <strong>98<span>%</span></strong>
+                        <p>재구매 의향률</p>
+                    </div>
+                    <div class="n-stat">
+                        <strong>1<span>일</span></strong>
+                        <p>체감 진정 효과</p>
+                    </div>
+                    <div class="n-stat">
+                        <strong>3,500<span>+</span></strong>
+                        <p>실제 사용자 리뷰</p>
+                    </div>
+                </div>
+            </div>
+            <div class="qs-narrative__visual">
+                <div class="narrative-img-stack">
+                    <img src="./images/brand_02.png" alt="QuietSkin 앰플" class="stack-img img-main qs-reveal">
+                </div>
+                <div class="ingredient-badge qs-reveal">
+                    <span class="ing-icon">🌿</span>
                     <div>
+                        <strong>병풀 추출물 85%</strong>
+                        <span>Centella Asiatica Extract</span>
                         <span class="sec_tag">민감 피부 첫 단계 추천</span>
                         <h3 class="sec_title">BEST SELLERS</h3>
                     </div>
-                    <a href="sub_all_products.html" class="btn_more">전체 제품 보기 <span class="material-icons">chevron_right</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             SECTION 4 : BEST SELLERS (모던 그리드)
+        ============================================= -->
+        <section class="qs-best">
+            <div class="qs-best__header">
+                <div class="best-header-left">
+                    <div class="section-kicker">Best Sellers</div>
+                    <h2 class="section-heading">가장 많이 선택된<br>QuietSkin</h2>
+                </div>
+                <a href="sub_all_products.html" class="btn-text-link">전체 제품 보기 <span class="material-icons">arrow_forward</span></a>
+            </div>
+
+            <div class="qs-best__grid">
+                <!-- 상품 카드 1 -->
+                <div class="qs-product-card qs-reveal">
+                    <a href="sub_products_view.html" class="card-link-wrap">
+                        <div class="card-img-wrap">
+                            <img src="./images/sec2_img02.jpg" alt="카밍 진정 앰플">
+                            <div class="card-badge best">BEST</div>
+                            <button class="card-wish" aria-label="찜하기"><span class="material-icons">favorite_border</span></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-tags">
+                                <span class="tag">#진정</span>
+                                <span class="tag">#수분장벽</span>
+                                <span class="tag">#민감피부</span>
+                            </div>
+                            <strong class="card-name">카밍 진정 앰플</strong>
+                            <span class="card-volume">30ml</span>
+                            <div class="card-bottom">
+                                <div class="card-review">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="cnt">(432)</span>
+                                </div>
+                                <div class="card-price-wrap">
+                                    <strong class="card-price">32,000원</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <button class="btn-cart-add" aria-label="장바구니">
+                        <span class="material-icons">add_shopping_cart</span>
+                        담기
+                    </button>
                 </div>
 
-                <div class="product_grid">
-                    <div class="product_card">
-                       <a href="sub_products_view.html">
-                            <div class="img_thumb img_reveal_target unique_badge_best"> <img src="images/sec2_img02.jpg" alt="">
-                                <button type="button" class="btn_cart_add" aria-label="장바구니 담기">
-                                    <span class="material-icons">add_shopping_cart</span>
-                                </button>
-                            </div>
+                <!-- 상품 카드 2 -->
+                <div class="qs-product-card qs-reveal">
+                    <a href="sub_products_view.html" class="card-link-wrap">
+                        <div class="card-img-wrap">
+                            <img src="./images/sec2_img03.jpg" alt="카밍 로션">
+                            <button class="card-wish" aria-label="찜하기"><span class="material-icons">favorite_border</span></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-tags">
+                                <span class="tag">#유수분밸런스</span>
+                                <span class="tag">#민감보습</span>
                             <div class="product_info">
                                 <strong class="p_name">카밍 진정 앰플 30ml</strong>
                                 <span class="p_volume">QuietSkin Calming Ampoule 30ml</span>
@@ -146,33 +352,63 @@
                                     <span class="material-icons">add_shopping_cart</span>
                                 </button>
                             </div>
-                            <div class="product_info">
-                                <strong class="p_name">카밍 로션</strong>
-                                <span class="p_volume">100ml</span>
-                                <span class="p_hash">#유수분밸런스 #민감보습</span>
-                                <div class="p_price_box"><span class="price">24,000원</span></div>
-                                <div class="p_review_summary">
-                                    <span class="stars">★★★★★</span><span class="count">(285)</span>
+                            <strong class="card-name">카밍 로션</strong>
+                            <span class="card-volume">100ml</span>
+                            <div class="card-bottom">
+                                <div class="card-review">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="cnt">(285)</span>
+                                </div>
+                                <div class="card-price-wrap">
+                                    <strong class="card-price">24,000원</strong>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="product_card">
-                        <a href="sub_products_view.html">
-                            <div class="img_thumb img_reveal_target"><img src="images/sec2_img04.jpg" alt="">
-                                <button type="button" class="btn_cart_add" aria-label="장바구니 담기">
-                                    <span class="material-icons">add_shopping_cart</span>
-                                </button>
+                        </div>
+                    </a>
+                    <button class="btn-cart-add" aria-label="장바구니">
+                        <span class="material-icons">add_shopping_cart</span>
+                        담기
+                    </button>
+                </div>
+
+                <!-- 상품 카드 3 -->
+                <div class="qs-product-card qs-reveal">
+                    <a href="sub_products_view.html" class="card-link-wrap">
+                        <div class="card-img-wrap">
+                            <img src="./images/sec2_img04.jpg" alt="카밍 폼 클렌저">
+                            <button class="card-wish" aria-label="찜하기"><span class="material-icons">favorite_border</span></button>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-tags">
+                                <span class="tag">#자극무</span>
+                                <span class="tag">#약산성</span>
                             </div>
-                            <div class="product_info">
-                                <strong class="p_name">카밍 폼 클렌저</strong>
-                                <span class="p_volume">150ml</span>
-                                <span class="p_hash">#자극무 유황진정 #약산성</span>
-                                <div class="p_price_box"><span class="price">20,000원</span></div>
-                                <div class="p_review_summary">
-                                <span class="stars">★★★★☆</span><span class="count">(198)</span>
+                            <strong class="card-name">카밍 폼 클렌저</strong>
+                            <span class="card-volume">150ml</span>
+                            <div class="card-bottom">
+                                <div class="card-review">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="cnt">(198)</span>
+                                </div>
+                                <div class="card-price-wrap">
+                                    <strong class="card-price">20,000원</strong>
+                                </div>
                             </div>
                         </div>
+                    </a>
+                    <button class="btn-cart-add" aria-label="장바구니">
+                        <span class="material-icons">add_shopping_cart</span>
+                        담기
+                    </button>
+                </div>
+
+                <!-- 상품 카드 4 -->
+                <div class="qs-product-card qs-reveal">
+                    <a href="sub_products_view.html" class="card-link-wrap">
+                        <div class="card-img-wrap">
+                            <img src="./images/sec2_img05.jpg" alt="카밍 크림">
+                            <div class="card-badge new">NEW</div>
+                            <button class="card-wish" aria-label="찜하기"><span class="material-icons">favorite_border</span></button>
                         </a>
                     </div>
                     <div class="product_card">
@@ -181,17 +417,44 @@
                                 <span class="material-icons">add_shopping_cart</span>
                             </button>
                         </div>
-                        <div class="product_info">
-                            <strong class="p_name">카밍 모이스처라이징 크림</strong>
-                            <span class="p_volume">50ml</span>
-                            <span class="p_hash">#장벽강화 #보습지속</span>
-                            <div class="p_price_box"><span class="price">28,000원</span></div>
-                            <div class="p_review_summary">
-                                <span class="stars">★★★★★</span><span class="count">(367)</span>
+                        <div class="card-body">
+                            <div class="card-tags">
+                                <span class="tag">#장벽강화</span>
+                                <span class="tag">#보습지속</span>
+                            </div>
+                            <strong class="card-name">카밍 모이스처라이징 크림</strong>
+                            <span class="card-volume">50ml</span>
+                            <div class="card-bottom">
+                                <div class="card-review">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="cnt">(367)</span>
+                                </div>
+                                <div class="card-price-wrap">
+                                    <strong class="card-price">28,000원</strong>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
+                    <button class="btn-cart-add" aria-label="장바구니">
+                        <span class="material-icons">add_shopping_cart</span>
+                        담기
+                    </button>
                 </div>
+            </div>
+
+            <!-- 번들 배너 -->
+            <div class="qs-bundle qs-reveal">
+                <div class="bundle-visual">
+                    <img src="images/product_all.jpg" alt="세트">
+                </div>
+                <div class="bundle-content">
+                    <span class="bundle-kicker">Limited Set</span>
+                    <h3 class="bundle-title">진정 루틴 스타터 세트</h3>
+                    <p class="bundle-desc">앰플 + 로션 + 크림으로 완성되는<br>7일 피부 회복 루틴</p>
+                    <div class="bundle-price-row">
+                        <del>84,000원</del>
+                        <strong>75,600원</strong>
+                        <span class="discount-badge">10% 할인</span>
 
                 <div class="bundle_banner img_reveal_target">
                     <div class="bundle_left">
@@ -206,10 +469,19 @@
                         </div>
                         <a href="sub_all_products.html" class="btn_bundle_link">구매하기 <span class="material-icons">arrow_forward</span></a>
                     </div>
+                    <a href="sub_all_products.html" class="btn-bundle">세트 구매하기 <span class="material-icons">arrow_forward</span></a>
                 </div>
             </div>
         </section>
 
+        <!-- =============================================
+             SECTION 5 : 비디오 + 성분 포커스 (2열 풀블리드)
+        ============================================= -->
+        <section class="qs-ingredient">
+            <div class="ing-video-col">
+                <video src="./images/serum.mp4" autoplay loop muted playsinline class="ing-video"></video>
+                <div class="ing-video-caption">
+                    <span>QuietSkin Calming Serum</span>
         <section class="sec_md_pick">
             <div class="inner_section">
                 <div class="md_left_title">
@@ -218,139 +490,357 @@
                     <p class="sec_desc">민감 피부를 위한 데일리 진정 제품을<br>QuietSkin에서 만나보세요.</p>
                     <a href="sub_all_products.html" class="btn_md_more">제품 보기 <span class="material-icons">arrow_forward</span></a>
                 </div>
-                <div class="md_right_grid">
-                    <div class="md_item">
-                        <div class="img_holder img_reveal_target"><img src="images/section2_01.jpg" alt=""></div>
-                        <div class="md_info">
-                            <h4>카밍 모이스처라이징 크림</h4>
-                            <p>촉촉한 보습과 장벽 케어</p>
-                        </div>
-                    </div>
-                    <div class="md_item">
-                        <div class="img_holder img_reveal_target"><img src="images/section2_02.jpg" alt=""></div>
-                        <div class="md_info">
-                            <h4>카밍 로션</h4>
-                            <p>수분 밸런스와 진정 케어</p>
-                        </div>
-                    </div>
-                    <div class="md_item">
-                        <div class="img_holder img_reveal_target"><img src="images/section2_03.jpg" alt=""></div>
-                        <div class="md_info">
-                            <h4>카밍 폼 클렌저</h4>
-                            <p>저자극 딥 클렌징</p>
-                        </div>
-                    </div>
+            </div>
+            <div class="ing-content-col">
+                <div class="ing-content-inner">
+                    <span class="section-kicker">Key Ingredients</span>
+                    <h2 class="section-heading">믿을 수 있는<br>성분만 담습니다</h2>
+                    <ul class="ing-list">
+                        <li class="ing-item qs-reveal">
+                            <div class="ing-icon-wrap">🌿</div>
+                            <div class="ing-detail">
+                                <strong>병풀 추출물 (Centella Asiatica)</strong>
+                                <p>진정·재생의 핵심 성분. 피부 장벽 회복과 붉은기 완화에 직접 작용합니다.</p>
+                            </div>
+                        </li>
+                        <li class="ing-item qs-reveal">
+                            <div class="ing-icon-wrap">💧</div>
+                            <div class="ing-detail">
+                                <strong>5중 히알루론산 (Hyaluronic Acid Complex)</strong>
+                                <p>저분자부터 고분자까지 5가지 분자량이 피부 각 층에 수분을 채웁니다.</p>
+                            </div>
+                        </li>
+                        <li class="ing-item qs-reveal">
+                            <div class="ing-icon-wrap">🛡</div>
+                            <div class="ing-detail">
+                                <strong>세라마이드 NP/AP/EOP</strong>
+                                <p>피부 지질 구조를 복원해 수분 증발을 막고 외부 자극을 차단합니다.</p>
+                            </div>
+                        </li>
+                        <li class="ing-item qs-reveal">
+                            <div class="ing-icon-wrap">🍃</div>
+                            <div class="ing-detail">
+                                <strong>녹차 폴리페놀 (Green Tea Polyphenol)</strong>
+                                <p>강력한 항산화로 피부 산화 스트레스를 낮추고 맑은 톤을 유지합니다.</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="sub_brand_story.html" class="btn-text-link">성분 전체 보기 <span class="material-icons">arrow_forward</span></a>
                 </div>
             </div>
         </section>
 
-        <section class="sec_brand_promise">
-            <div class="inner_section">
-                <div class="promise_layout_wrapper">
-                    <div class="promise_left_box">
-                        <div class="promise_intro">
-                            <p class="sub">믿을 수 있는</p>
-                            <h3 class="title">QuietSkin의 약속</h3>
+        <!-- =============================================
+             SECTION 6 : 스킨케어 루틴 (오벌 슬라이더)
+        ============================================= -->
+        <section class="qs-routine">
+            <div class="qs-routine__inner">
+                <div class="routine-header">
+                    <div class="routine-header-left">
+                        <span class="section-kicker">Daily Routine</span>
+                        <h2 class="section-heading">하루 5분,<br>피부가 달라집니다</h2>
+                        <p class="routine-desc">마일드 저자극 스킨케어 루틴으로<br>건강한 피부 밸런스를 매일 유지하세요.</p>
+                    </div>
+                    <div class="routine-header-right">
+                        <a href="sub_morning_routine.html" class="btn-routine-cta">루틴 가이드 보기 <span class="material-icons">arrow_forward</span></a>
+                    </div>
+                </div>
+
+                <div class="routine-slider-wrap">
+                <button class="routine-prev" aria-label="이전"><span class="material-icons">chevron_left</span></button>
+                <button class="routine-next" aria-label="다음"><span class="material-icons">chevron_right</span></button>
+                <div class="swiper routine-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_01.png" alt="카밍 폼 클렌저">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">01</span>
+                                        <span class="step-type">클렌징</span>
+                                        <strong>카밍 폼 클렌저</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_02.jpg" alt="카밍 토너">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">02</span>
+                                        <span class="step-type">토너</span>
+                                        <strong>카밍 토너</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_03.jpg" alt="카밍 앰플">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">03</span>
+                                        <span class="step-type">앰플</span>
+                                        <strong>카밍 진정 앰플</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_04.png" alt="카밍 로션">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">04</span>
+                                        <span class="step-type">로션</span>
+                                        <strong>카밍 로션</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_05.jpg" alt="카밍 크림">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">05</span>
+                                        <span class="step-type">크림</span>
+                                        <strong>카밍 크림</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 루프 안정화용 복제 슬라이드 -->
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_01.png" alt="카밍 폼 클렌저">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">01</span>
+                                        <span class="step-type">클렌징</span>
+                                        <strong>카밍 폼 클렌저</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_02.jpg" alt="카밍 토너">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">02</span>
+                                        <span class="step-type">토너</span>
+                                        <strong>카밍 토너</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_03.jpg" alt="카밍 앰플">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">03</span>
+                                        <span class="step-type">앰플</span>
+                                        <strong>카밍 진정 앰플</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_04.png" alt="카밍 로션">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">04</span>
+                                        <span class="step-type">로션</span>
+                                        <strong>카밍 로션</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide routine-slide">
+                            <div class="routine-oval">
+                                <img src="./images/sec3_05.jpg" alt="카밍 크림">
+                                <div class="routine-oval-overlay">
+                                    <div class="oval-info">
+                                        <span class="step-num">05</span>
+                                        <span class="step-type">크림</span>
+                                        <strong>카밍 크림</strong>
+                                        <a href="sub_products_view.html" class="step-link">자세히 보기 →</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+                </div>
 
-                    <div class="promise_body_row">
-                        <div class="info_grid_container">
-                            <div class="info_card">
-                               <!--  <span class="material-icons">verified_user</span> -->
-                                <strong class="value">98%</strong>
-                                <p class="lbl">사용자 만족도<br>자극 완화 설문</p>
-                            </div>
-                            <div class="info_card">
-                               <!--  <span class="material-icons">chat_bubble_outline</span> -->
-                                <strong class="value">3,500+</strong>
-                                <p class="lbl">실제 리뷰<br>누적 경험 수</p>
-                            </div>
-                            <div class="info_card">
-                                <!-- <span class="material-icons">opacity</span> -->
-                                <strong class="value">EWG GREEN</strong>
-                                <p class="lbl">안전한 성분<br>전 제품 기준</p>
-                            </div>
-                            <div class="info_card">
-                               <!--  <!-- <span class="material-icons">favorite_border</span> -->
-                                <strong class="value">피부 자극 0.00</strong>
-                                <p class="lbl">자극 테스트 완료<br>민감성 피부 적합</p>
-                            </div>
-                        </div>
+            </div>
+        </section>
 
-                        <div class="promise_right_slider_box">
-                <div class="swiper review_slider">
+        <!-- =============================================
+             SECTION 7 : REVIEW (글래스모피즘 슬라이더)
+        ============================================= -->
+        <section class="qs-review">
+            <div class="qs-review__bg">
+                <video src="./images/toner.mp4" autoplay loop muted playsinline class="review-bg-video"></video>
+                <div class="review-overlay"></div>
+            </div>
+            <div class="qs-review__inner">
+                <div class="review-header">
+                    <span class="section-kicker white">Real Reviews</span>
+                    <h2 class="section-heading white">실제 사용자의<br>솔직한 경험</h2>
+                </div>
+
+                <div class="swiper review_slider_new">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="review_node">
-                                <div class="rating_box">
-                                    <span class="stars">★★★★★</span>
-                                    <strong class="score">5.0</strong>
+                            <div class="qs-review-card">
+                                <div class="review-top">
+                                    <span class="rev-stars">★★★★★</span>
+                                    <strong class="rev-score">5.0</strong>
                                 </div>
-                                <p class="comment">"붉은기가 유독 심한 민감성 타입인데 일주일 쓰고 붉은기가 많이 줄어들고 피부가 정말 편안해졌어요. 인생 세럼입니다!"</p>
-                                <span class="user_id">김** 고객님</span>
+                                <p class="rev-comment">"붉은기가 유독 심한 민감성 타입인데 일주일 쓰고 붉은기가 많이 줄어들고 피부가 정말 편안해졌어요. 인생 세럼입니다!"</p>
+                                <div class="rev-footer">
+                                    <img src="./images/review_img_01.jpg" alt="" class="rev-thumb">
+                                    <div>
+                                        <strong>김** 고객님</strong>
+                                        <span>카밍 진정 앰플 사용</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="review_node">
-                                <div class="rating_box">
-                                    <span class="stars">★★★★★</span>
-                                    <strong class="score">5.0</strong>
+                            <div class="qs-review-card">
+                                <div class="review-top">
+                                    <span class="rev-stars">★★★★★</span>
+                                    <strong class="rev-score">5.0</strong>
                                 </div>
-                                <p class="comment">"아침마다 속당김이 심했는데 카밍 크림 바른 뒤로는 메이크업도 훨씬 잘 먹어요. 무겁지 않아서 매일 쓰기 좋아요."</p>
-                                <span class="user_id">박** 고객님</span>
+                                <p class="rev-comment">"아침마다 속당김이 심했는데 카밍 크림 바른 뒤로는 메이크업도 훨씬 잘 먹어요. 무겁지 않아서 매일 쓰기 좋아요."</p>
+                                <div class="rev-footer">
+                                    <img src="./images/review_img_02.jpg" alt="" class="rev-thumb">
+                                    <div>
+                                        <strong>박** 고객님</strong>
+                                        <span>카밍 크림 사용</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="review_node">
-                                <div class="rating_box">
-                                    <span class="stars">★★★★★</span>
-                                    <strong class="score">5.0</strong>
+                            <div class="qs-review-card">
+                                <div class="review-top">
+                                    <span class="rev-stars">★★★★★</span>
+                                    <strong class="rev-score">5.0</strong>
                                 </div>
-                                <p class="comment">"클렌저가 순해서 세안 후 땅김이 거의 없어요. 민감한 날에도 부담 없이 쓰기 좋아서 가족이랑 같이 쓰고 있습니다."</p>
-                                <span class="user_id">이** 고객님</span>
+                                <p class="rev-comment">"클렌저가 순해서 세안 후 땅김이 거의 없어요. 민감한 날에도 부담 없이 쓰기 좋아서 가족이랑 같이 쓰고 있습니다."</p>
+                                <div class="rev-footer">
+                                    <img src="./images/review_img_03.jpg" alt="" class="rev-thumb">
+                                    <div>
+                                        <strong>이** 고객님</strong>
+                                        <span>카밍 폼 클렌저 사용</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="review_node">
-                                <div class="rating_box">
-                                    <span class="stars">★★★★☆</span>
-                                    <strong class="score">4.8</strong>
+                            <div class="qs-review-card">
+                                <div class="review-top">
+                                    <span class="rev-stars">★★★★☆</span>
+                                    <strong class="rev-score">4.8</strong>
                                 </div>
-                                <p class="comment">"로션 제형이 산뜻해서 여름에도 답답하지 않아요. 피부 결이 차분해 보여서 재구매하려고 장바구니에 담아뒀어요."</p>
-                                <span class="user_id">최** 고객님</span>
+                                <p class="rev-comment">"로션 제형이 산뜻해서 여름에도 답답하지 않아요. 피부 결이 차분해 보여서 재구매하려고 장바구니에 담아뒀어요."</p>
+                                <div class="rev-footer">
+                                    <img src="./images/review_img_04.jpg" alt="" class="rev-thumb">
+                                    <div>
+                                        <strong>최** 고객님</strong>
+                                        <span>카밍 로션 사용</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="review_node">
-                                <div class="rating_box">
-                                    <span class="stars">★★★★★</span>
-                                    <strong class="score">5.0</strong>
+                            <div class="qs-review-card">
+                                <div class="review-top">
+                                    <span class="rev-stars">★★★★★</span>
+                                    <strong class="rev-score">5.0</strong>
                                 </div>
-                                <p class="comment">"세럼, 로션, 크림을 같이 쓰니까 건조할 때 올라오던 따가움이 줄었어요. 향도 은은해서 오래 쓰기 편합니다."</p>
-                                <span class="user_id">정** 고객님</span>
+                                <p class="rev-comment">"세럼, 로션, 크림을 같이 쓰니까 건조할 때 올라오던 따가움이 줄었어요. 향도 은은해서 오래 쓰기 편합니다."</p>
+                                <div class="rev-footer">
+                                    <img src="./images/review_img_05.jpg" alt="" class="rev-thumb">
+                                    <div>
+                                        <strong>정** 고객님</strong>
+                                        <span>루틴 세트 사용</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                    
-                    <div class="slider_control_nav">
-                        <button type="button" class="review-prev" aria-label="이전"><span class="material-icons">arrow_back</span></button>
-                        <button type="button" class="review-next" aria-label="다음"><span class="material-icons">arrow_forward</span></button>
+                    </div>
+                    <div class="review-nav">
+                        <button class="rev-prev" aria-label="이전"><span class="material-icons">arrow_back</span></button>
+                        <div class="swiper-pagination review-pag"></div>
+                        <button class="rev-next" aria-label="다음"><span class="material-icons">arrow_forward</span></button>
                     </div>
                 </div>
-                        </div>
+
+                <div class="review-summary">
+                    <div class="rev-sum-item">
+                        <strong>4.9</strong>
+                        <span>평균 평점</span>
                     </div>
+                    <div class="rev-sum-item">
+                        <strong>3,500+</strong>
+                        <span>누적 리뷰</span>
+                    </div>
+                    <div class="rev-sum-item">
+                        <strong>98%</strong>
+                        <span>재구매 의향</span>
+                    </div>
+                    <a href="sub_photo_reviews.html" class="rev-more-btn">리뷰 전체 보기 <span class="material-icons">arrow_forward</span></a>
                 </div>
             </div>
         </section>
 
-        <section class="sec_routine">
-            <div class="inner_section">
-                <div class="routine_header">
-                    <span class="tag">하루의 시작과 끝</span>
-                    <h3 class="title">피부는 맑은 기준이 필요합니다</h3>
-                    <p class="desc">마일드 저자극 진정 스킨케어 루틴으로 건강한 피부 밸런스를 유지하세요.</p>
+        <!-- =============================================
+             SECTION 8 : 브랜드 약속 (어스톤 풀블리드)
+        ============================================= -->
+        <section class="qs-promise">
+            <div class="qs-promise__inner">
+                <div class="promise-text-col">
+                    <span class="section-kicker">Brand Promise</span>
+                    <h2 class="section-heading">QuietSkin의<br>조용한 약속</h2>
+                    <p class="promise-body">
+                        저희는 피부에 자극이 되는 성분을 쓰지 않겠다는 약속을 지킵니다.<br>
+                        EWG 그린 등급 성분만 선별하고, 민감성 피부 임상을 통과한 포뮬러만 제품화합니다.<br>
+                        그리고 지구를 위해 친환경 패키징을 멈추지 않겠습니다.
+                    </p>
+                    <a href="sub_brand_story.html" class="btn-outline-dark">브랜드 스토리 보기 <span class="material-icons">arrow_forward</span></a>
                 </div>
+                <div class="promise-card-col">
+                    <div class="promise-card qs-reveal">
+                        <span class="material-icons promise-icon">spa</span>
+                        <strong>클린 포뮬러</strong>
+                        <p>EWG 그린 등급 성분만 사용, 유해 성분 無</p>
+                    </div>
+                    <div class="promise-card qs-reveal">
+                        <span class="material-icons promise-icon">science</span>
+                        <strong>임상 검증</strong>
+                        <p>민감성 피부 자극도 0.00% 판정 완료</p>
+                    </div>
+                    <div class="promise-card qs-reveal">
+                        <span class="material-icons promise-icon">recycling</span>
+                        <strong>지속 가능성</strong>
+                        <p>100% PCR 친환경 용기 / 업사이클 원료 개발</p>
                 
                 <div class="routine_flex_container">
                     <div class="routine_steps">
@@ -394,6 +884,10 @@
                         </div>
                         <div class="step_arrow"><span class="material-icons">chevron_right</span></div>
                     </div>
+                    <div class="promise-card qs-reveal">
+                        <span class="material-icons promise-icon">favorite</span>
+                        <strong>비건 인증</strong>
+                        <p>동물 실험 없는 크루얼티 프리 브랜드</p>
 
                     <div class="routine_finder_banner">
                         <div class="finder_top_txt">
@@ -406,10 +900,51 @@
             </div>
         </section>
 
+        <!-- =============================================
+             SECTION 9 : INSTAGRAM FEED MOCKUP
+        ============================================= -->
+        <section class="qs-insta">
+            <div class="qs-insta__inner">
+                <div class="insta-header">
+                    <div>
+                        <span class="section-kicker">@quietskin_official</span>
+                        <h2 class="section-heading sm">QuietSkin 일상 속에서</h2>
+                    </div>
+                    <a href="#" class="btn-text-link">Instagram 팔로우 <span class="material-icons">open_in_new</span></a>
+                </div>
+                <div class="insta-grid">
+                    <div class="insta-cell qs-reveal"><img src="./images/review_img_01.jpg" alt=""></div>
+                    <div class="insta-cell qs-reveal"><img src="./images/review_img_02.jpg" alt=""></div>
+                    <div class="insta-cell qs-reveal"><img src="./images/review_img_03.jpg" alt=""></div>
+                    <div class="insta-cell qs-reveal"><img src="./images/review_img_04.jpg" alt=""></div>
+                    <div class="insta-cell qs-reveal"><img src="./images/review_img_05.jpg" alt=""></div>
+                    <div class="insta-cell qs-reveal"><img src="./images/review_img_06.jpg" alt=""></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================================
+             SECTION 10 : 뉴스레터 CTA
+        ============================================= -->
+        <section class="qs-newsletter">
+            <div class="qs-newsletter__inner">
+                <div class="nl-icon">✉</div>
+                <h2 class="nl-title">QuietSkin 뉴스레터</h2>
+                <p class="nl-desc">신제품 출시, 한정 할인, 피부 관리 팁을<br>가장 먼저 받아보세요.</p>
+                <form class="nl-form" onsubmit="return false;">
+                    <input type="email" placeholder="이메일 주소를 입력하세요" class="nl-input" required>
+                    <button type="submit" class="nl-btn">구독하기</button>
+                </form>
+                <p class="nl-note">* 언제든지 구독 취소 가능합니다. 개인정보는 안전하게 보호됩니다.</p>
+            </div>
+        </section>
+
     </main>
+
     <div data-include="footer"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
