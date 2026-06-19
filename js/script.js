@@ -147,11 +147,14 @@ function initNavigation() {
 }
 
 function initSearch() {
+    /* header.html 삽입 후 body 직속 자식으로 존재하는 오버레이 탐색 */
     const searchToggleBtns = document.querySelectorAll('.btn_search_toggle');
     const searchCloseBtn  = document.querySelector('.btn_search_close');
     const searchOverlay   = document.querySelector('.search_overlay');
     const searchInput     = document.querySelector('.search_input');
     const searchForm      = document.querySelector('.search_form');
+
+    if (!searchOverlay) return;
 
     const openSearch = function () {
         if (!searchOverlay) return;
@@ -174,19 +177,17 @@ function initSearch() {
     searchToggleBtns.forEach(btn => btn.addEventListener('click', openSearch));
     if (searchCloseBtn)  searchCloseBtn.addEventListener('click', closeSearch);
 
-    /* 추천 태그 클릭 → 검색창에 삽입 후 포커스 */
+    /* 추천 태그 클릭 → 검색창에 삽입 후 바로 이동 */
     document.querySelectorAll('.search_tags button').forEach(function (btn) {
         btn.addEventListener('click', function () {
             if (searchInput) {
-                searchInput.value = this.textContent;
-                searchInput.focus();
+                searchInput.value = this.textContent.trim();
+                /* 폼이 있으면 바로 제출해서 search.html로 이동 */
+                if (searchForm) searchForm.submit();
+                else searchInput.focus();
             }
         });
     });
-
-    if (searchForm) {
-        searchForm.addEventListener('submit', function (e) { e.preventDefault(); });
-    }
 
     /* 오버레이 배경 클릭 시 닫기 */
     if (searchOverlay) {

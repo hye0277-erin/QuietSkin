@@ -64,16 +64,16 @@
                 <div class="rv-grid-head">
                     <h2>Best Photo Review</h2>
                     <div class="rv-filter">
-                        <button class="active" type="button">전체</button>
-                        <button type="button">민감피부</button>
-                        <button type="button">속건조</button>
-                        <button type="button">진정케어</button>
+                        <button class="active" type="button" data-filter="all"><span class="material-icons" aria-hidden="true">apps</span>전체</button>
+                        <button type="button" data-filter="민감피부"><span class="material-icons" aria-hidden="true">health_and_safety</span>민감피부</button>
+                        <button type="button" data-filter="속건조"><span class="material-icons" aria-hidden="true">water_drop</span>속건조</button>
+                        <button type="button" data-filter="진정케어"><span class="material-icons" aria-hidden="true">spa</span>진정케어</button>
                     </div>
                 </div>
 
                 <div class="rv-grid">
 
-                    <article class="rv-card">
+                    <article class="rv-card" data-tag="민감피부">
                         <div class="rv-card-img">
                             <img src="./images/review_img_01.jpg" alt="리뷰 이미지">
                         </div>
@@ -89,7 +89,7 @@
                         </div>
                     </article>
 
-                    <article class="rv-card">
+                    <article class="rv-card" data-tag="속건조">
                         <div class="rv-card-img">
                             <img src="./images/review_img_02.jpg" alt="리뷰 이미지">
                         </div>
@@ -105,7 +105,7 @@
                         </div>
                     </article>
 
-                    <article class="rv-card">
+                    <article class="rv-card" data-tag="민감피부">
                         <div class="rv-card-img">
                             <img src="./images/review_img_03.jpg" alt="리뷰 이미지">
                         </div>
@@ -121,7 +121,7 @@
                         </div>
                     </article>
 
-                    <article class="rv-card">
+                    <article class="rv-card" data-tag="진정케어">
                         <div class="rv-card-img">
                             <img src="./images/review_img_04.jpg" alt="리뷰 이미지">
                         </div>
@@ -137,7 +137,7 @@
                         </div>
                     </article>
 
-                    <article class="rv-card">
+                    <article class="rv-card" data-tag="속건조">
                         <div class="rv-card-img">
                             <img src="./images/review_img_05.jpg" alt="리뷰 이미지">
                         </div>
@@ -153,7 +153,7 @@
                         </div>
                     </article>
 
-                    <article class="rv-card">
+                    <article class="rv-card" data-tag="진정케어">
                         <div class="rv-card-img">
                             <img src="./images/review_img_06.jpg" alt="리뷰 이미지">
                         </div>
@@ -169,7 +169,7 @@
                         </div>
                     </article>
 
-                    <article class="rv-card">
+                    <article class="rv-card" data-tag="민감피부">
                         <div class="rv-card-img">
                             <img src="./images/review_img_07.jpg" alt="리뷰 이미지">
                         </div>
@@ -185,7 +185,7 @@
                         </div>
                     </article>
 
-                    <article class="rv-card">
+                    <article class="rv-card" data-tag="진정케어">
                         <div class="rv-card-img">
                             <img src="./images/review_img_08.jpg" alt="리뷰 이미지">
                         </div>
@@ -225,5 +225,64 @@
 
     <div data-include="footer"></div>
     <script src="./js/script.js"></script>
+    <script>
+        /* ── 숫자 카운트업 애니메이션 ── */
+        function animateCount(el) {
+            const rawText = el.textContent.trim();
+            const isPercent = rawText.endsWith('%');
+            const target = parseFloat(rawText.replace('%', ''));
+            const duration = 1600;
+            const start = performance.now();
+
+            function step(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                /* easeOutExpo */
+                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const current = target * ease;
+                el.textContent = (Number.isInteger(target)
+                    ? Math.round(current)
+                    : current.toFixed(1)) + (isPercent ? '%' : '');
+                if (progress < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        const statEls = document.querySelectorAll('.rv-stats strong, .rv-score-big strong');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.dataset.counted) {
+                    entry.target.dataset.counted = '1';
+                    animateCount(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        statEls.forEach(el => observer.observe(el));
+
+        /* ── 필터 기능 ── */
+        const filterBtns = document.querySelectorAll('.rv-filter button');
+        const cards = document.querySelectorAll('.rv-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+
+                cards.forEach(card => {
+                    const match = filter === 'all' || card.dataset.tag === filter;
+                    if (match) {
+                        card.style.display = '';
+                        /* 살짝 페이드인 */
+                        card.style.animation = 'none';
+                        card.offsetHeight; /* reflow */
+                        card.style.animation = 'rv-fade-in 0.35s ease forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 글쓰기 - QuietSkin</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/sub.css">
+    <link rel="stylesheet" href="./css/notice.css">
+</head>
+<body>
+    <div data-include="header"></div>
+
+    <section class="sub-hero">
+        <img src="./images/brand_bg.jpg" alt="" class="sub-hero__bg">
+        <div class="sub-hero__content">
+            <span class="sub-kicker">Notice</span>
+            <h1 class="sub-heading white">공지사항 글쓰기</h1>
+        </div>
+    </section>
+
+    <main class="notice-page">
+        <div class="notice-inner notice-write">
+            <div class="notice-write-head">
+                <h2>새 공지 작성</h2>
+                <p>고객에게 안내할 내용을 정확하게 입력해 주세요.</p>
+            </div>
+
+            <form action="#" method="post" class="notice-form">
+                <div class="notice-form-row">
+                    <label for="notice-category">분류</label>
+                    <select id="notice-category" name="category">
+                        <option value="notice">공지</option>
+                        <option value="normal">일반</option>
+                        <option value="event">이벤트</option>
+                        <option value="delivery">배송</option>
+                    </select>
+                </div>
+
+                <div class="notice-form-row">
+                    <label for="notice-title">제목</label>
+                    <input type="text" id="notice-title" name="title" placeholder="제목을 입력하세요">
+                </div>
+
+                <div class="notice-form-row">
+                    <label for="notice-writer">작성자</label>
+                    <input type="text" id="notice-writer" name="writer" value="관리자">
+                </div>
+
+                <div class="notice-form-row">
+                    <label for="notice-content">내용</label>
+                    <textarea id="notice-content" name="content" rows="12" placeholder="공지 내용을 입력하세요"></textarea>
+                </div>
+
+                <div class="notice-form-row">
+                    <label for="notice-file">첨부파일</label>
+                    <div class="notice-file-input">
+                        <span class="material-icons" aria-hidden="true">attach_file</span>
+                        <input type="file" id="notice-file" name="file">
+                    </div>
+                </div>
+
+                <label class="notice-check">
+                    <input type="checkbox" name="pinned">
+                    <span>상단 고정 공지로 등록</span>
+                </label>
+
+                <div class="notice-actions">
+                    <a href="./notice.html" class="notice-btn secondary">취소</a>
+                    <button type="submit" class="notice-btn primary">
+                        <span class="material-icons" aria-hidden="true">check</span>
+                        등록하기
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <div data-include="footer"></div>
+    <script src="./js/script.js"></script>
+</body>
+</html>

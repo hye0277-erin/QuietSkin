@@ -1,0 +1,58 @@
+/* ==========================================================================
+   아이디/비밀번호 찾기 페이지 (find_account.html)
+   ========================================================================== */
+
+.fa-shell {
+    width: min(1040px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(320px, 430px) 1fr;
+    align-items: stretch;
+    gap: 34px;
+}
+
+/* 탭 */
+.fa-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #eceee9;
+    margin-bottom: 28px;
+}
+
+.fa-tab {
+    flex: 1;
+    padding: 12px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #9aaa9a;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.fa-tab.active {
+    color: #1a4d38;
+    border-bottom-color: #1a4d38;
+}
+
+/* 패널 */
+.fa-panel-body {
+    display: none;
+}
+
+.fa-panel-body.active {
+    display: block;
+}
+
+@media (max-width: 767px) {
+    .fa-shell {
+        grid-template-columns: 1fr;
+    }
+    .login-visual {
+        min-height: 260px;
+    }
+}

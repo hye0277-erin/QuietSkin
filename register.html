@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - QuietSkin</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/register.css">
+</head>
+<body>
+    <div data-include="header"></div>
+
+    <main class="login-page">
+        <section class="rg-shell" aria-labelledby="rg-title">
+
+            <div class="login-panel rg-panel">
+                <span class="login-eyebrow">Create Account</span>
+                <h2 id="rg-title">회원가입</h2>
+                <p>QuietSkin 회원이 되어 민감 피부를 위한 맞춤 루틴을 경험해보세요.</p>
+
+                <form action="#" method="post" class="login-form rg-form">
+
+                    <div class="rg-row">
+                        <div>
+                            <label for="rg-name">이름</label>
+                            <div class="login-field">
+                                <span class="material-icons" aria-hidden="true">person_outline</span>
+                                <input type="text" id="rg-name" name="name" placeholder="이름 입력" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="rg-birth">생년월일</label>
+                            <div class="login-field">
+                                <span class="material-icons" aria-hidden="true">cake</span>
+                                <input type="text" id="rg-birth" name="birth" placeholder="YYYYMMDD">
+                            </div>
+                        </div>
+                    </div>
+
+                    <label for="rg-email">이메일</label>
+                    <div class="login-field">
+                        <span class="material-icons" aria-hidden="true">mail_outline</span>
+                        <input type="email" id="rg-email" name="email" placeholder="이메일 주소 입력" required>
+                    </div>
+
+                    <label for="rg-id">아이디</label>
+                    <div class="login-field">
+                        <span class="material-icons" aria-hidden="true">badge</span>
+                        <input type="text" id="rg-id" name="user-id" placeholder="영문, 숫자 6~20자" required>
+                    </div>
+
+                    <label for="rg-pw">비밀번호</label>
+                    <div class="login-field">
+                        <span class="material-icons" aria-hidden="true">lock_outline</span>
+                        <input type="password" id="rg-pw" name="password" placeholder="영문+숫자+특수문자 8자 이상" required>
+                    </div>
+
+                    <label for="rg-pw2">비밀번호 확인</label>
+                    <div class="login-field">
+                        <span class="material-icons" aria-hidden="true">lock_outline</span>
+                        <input type="password" id="rg-pw2" name="password2" placeholder="비밀번호 재입력" required>
+                    </div>
+
+                    <label for="rg-phone">휴대폰 번호</label>
+                    <div class="login-field">
+                        <span class="material-icons" aria-hidden="true">phone_iphone</span>
+                        <input type="tel" id="rg-phone" name="phone" placeholder="숫자만 입력">
+                    </div>
+
+                    <div class="rg-agree">
+                        <label class="rg-agree-all login-check">
+                            <input type="checkbox" id="agree-all">
+                            <span>전체 약관에 동의합니다</span>
+                        </label>
+                        <div class="rg-agree-list">
+                            <label class="login-check">
+                                <input type="checkbox" name="agree-terms" required>
+                                <span>[필수] 이용약관 동의</span>
+                            </label>
+                            <label class="login-check">
+                                <input type="checkbox" name="agree-privacy" required>
+                                <span>[필수] 개인정보 수집 및 이용 동의</span>
+                            </label>
+                            <label class="login-check">
+                                <input type="checkbox" name="agree-marketing">
+                                <span>[선택] 마케팅 정보 수신 동의</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="login-submit">회원가입</button>
+                </form>
+
+                <div class="login-links">
+                    <span>이미 회원이신가요?</span>
+                    <a href="./join.html">로그인</a>
+                </div>
+            </div>
+
+            <aside class="login-visual" aria-label="회원 혜택">
+                <img src="./images/all_product.jpg" alt="QuietSkin 진정 케어 이미지">
+                <div class="login-benefit">
+                    <strong>신규 회원 5,000원 쿠폰 지급</strong>
+                    <span>첫 구매 무료배송과 등급별 적립 혜택을 함께 받아보세요.</span>
+                </div>
+                <ul>
+                    <li><span class="material-icons">card_giftcard</span>가입 즉시 5,000원 쿠폰 지급</li>
+                    <li><span class="material-icons">local_shipping</span>첫 구매 무료배송</li>
+                    <li><span class="material-icons">verified_user</span>민감 피부 맞춤 루틴 저장</li>
+                    <li><span class="material-icons">redeem</span>등급별 포인트 자동 적립</li>
+                </ul>
+            </aside>
+
+        </section>
+    </main>
+
+    <div data-include="footer"></div>
+    <script src="./js/script.js"></script>
+    <script>
+        /* 전체 동의 체크박스 */
+        const agreeAll = document.getElementById('agree-all');
+        const agreeItems = document.querySelectorAll('.rg-agree-list input[type="checkbox"]');
+        agreeAll.addEventListener('change', () => {
+            agreeItems.forEach(cb => cb.checked = agreeAll.checked);
+        });
+        agreeItems.forEach(cb => {
+            cb.addEventListener('change', () => {
+                agreeAll.checked = [...agreeItems].every(c => c.checked);
+            });
+        });
+    </script>
+</body>
+</html>

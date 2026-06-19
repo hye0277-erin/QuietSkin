@@ -1,0 +1,73 @@
+/* ==========================================================================
+   회원가입 페이지 (register.html)
+   ========================================================================== */
+
+.rg-shell {
+    width: min(1040px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(360px, 520px) 1fr;
+    align-items: stretch;
+    gap: 34px;
+}
+
+.rg-panel {
+    max-height: none;
+}
+
+.rg-form {
+    gap: 12px;
+}
+
+.rg-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.rg-row label {
+    display: block;
+    margin-bottom: 0;
+    color: #38443f;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* 약관 동의 */
+.rg-agree {
+    border: 1px solid #e8efeb;
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: grid;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.rg-agree-all {
+    font-weight: 700;
+    color: #1a2118;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #edf2ef;
+}
+
+.rg-agree-list {
+    display: grid;
+    gap: 8px;
+}
+
+.rg-agree-list .login-check {
+    color: #5a6a62;
+    font-size: 13px;
+}
+
+@media (max-width: 767px) {
+    .rg-shell {
+        grid-template-columns: 1fr;
+    }
+    .rg-row {
+        grid-template-columns: 1fr;
+    }
+    .login-visual {
+        min-height: 260px;
+    }
+}
