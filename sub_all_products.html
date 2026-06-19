@@ -26,14 +26,14 @@
         <div class="page-top">
             <div class="page-top-inner">
                 <p class="page-top-count"><span>6</span> Products</p>
-                <div class="product-category-filter" aria-label="카테고리 필터">
-                    <button type="button" class="active" data-filter="all">ALL</button>
-                    <button type="button" data-filter="cleanser">CLEANSER</button>
-                    <button type="button" data-filter="toner">TONER</button>
-                    <button type="button" data-filter="ampoule">AMPOULE</button>
-                    <button type="button" data-filter="cream">CREAM</button>
-                    <button type="button" data-filter="set">SET</button>
-                </div>
+                <select class="product-category-select" aria-label="카테고리 필터">
+                    <option value="all">ALL</option>
+                    <option value="cleanser">CLEANSER</option>
+                    <option value="toner">TONER</option>
+                    <option value="ampoule">AMPOULE</option>
+                    <option value="cream">CREAM</option>
+                    <option value="set">SET</option>
+                </select>
             </div>
         </div>
 
@@ -55,7 +55,6 @@
                         <span class="p_volume">민감 피부를 위한 데일리 진정 앰플</span>
                         <span class="p_hash">#진정 #수분장벽 #민감피부</span>
                         <div class="p_price_box"><span class="price">32,000원</span></div>
-                        <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기 <span class="material-icons">arrow_forward</span></a>
                     </div>
                 </div>
 
@@ -73,7 +72,6 @@
                         <span class="p_volume">100ml</span>
                         <span class="p_hash">#진정 #민감피부 #민감보습</span>
                         <div class="p_price_box"><span class="price">24,000원</span></div>
-                        <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기 <span class="material-icons">arrow_forward</span></a>
                     </div>
                 </div>
 
@@ -91,7 +89,6 @@
                         <span class="p_volume">150ml</span>
                         <span class="p_hash">#저자극세안 #약산성</span>
                         <div class="p_price_box"><span class="price">20,000원</span></div>
-                        <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기 <span class="material-icons">arrow_forward</span></a>
                     </div>
                 </div>
 
@@ -109,7 +106,6 @@
                         <span class="p_volume">50ml</span>
                         <span class="p_hash">#장벽강화 #보습지속</span>
                         <div class="p_price_box"><span class="price">28,000원</span></div>
-                        <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기 <span class="material-icons">arrow_forward</span></a>
                     </div>
                 </div>
 
@@ -127,7 +123,6 @@
                         <span class="p_volume">50ml</span>
                         <span class="p_hash">#데일리보호 #산뜻마무리</span>
                         <div class="p_price_box"><span class="price">28,000원</span></div>
-                        <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기 <span class="material-icons">arrow_forward</span></a>
                     </div>
                 </div>
 
@@ -145,7 +140,6 @@
                         <span class="p_volume">앰플 + 토너 + 크림 구성</span>
                         <span class="p_hash">#루틴케어 #세트할인</span>
                         <div class="p_price_box"><span class="price">75,600원</span> <del class="p_original">94,000원</del></div>
-                        <a href="./sub_products_view.html" class="btn_product_detail">자세히 보기 <span class="material-icons">arrow_forward</span></a>
                     </div>
                 </div>
 
@@ -157,16 +151,12 @@
     <script src="./js/script.js"></script>
     <script>
         /* 카테고리 필터 */
-        const filterBtns = document.querySelectorAll('.product-category-filter button');
+        const filterSelect = document.querySelector('.product-category-select');
         const cards = document.querySelectorAll('.product_card');
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const f = btn.dataset.filter;
-                cards.forEach(card => {
-                    card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
-                });
+        filterSelect.addEventListener('change', () => {
+            const f = filterSelect.value;
+            cards.forEach(card => {
+                card.style.display = (f === 'all' || card.dataset.category === f) ? '' : 'none';
             });
         });
     </script>

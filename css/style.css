@@ -16,7 +16,7 @@
 }
 
 /* RESET */
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; word-break: keep-all; overflow-wrap: break-word; }
 body { font-family: 'Paperozi', sans-serif; color: var(--text-main); background-color: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 body.no-scroll { overflow: hidden; }
 a { text-decoration: none; color: inherit; transition: var(--transition-base); }
@@ -146,57 +146,78 @@ img { max-width: 100%; display: block; }
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background: rgba(10, 20, 14, 0.86);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 72px 24px;
+    justify-content: flex-start;
+    padding: 0;
     overflow-y: auto;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.28s ease;
 }
 .search_overlay.open {
     opacity: 1;
     pointer-events: auto;
 }
 
-.search_overlay_inner {
+/* 오버레이 상단 바 */
+.search_overlay_topbar {
     width: 100%;
-    max-width: 720px;
-    min-height: min(560px, calc(100vh - 144px));
-    padding: 76px 48px 48px;
-    position: relative;
+    height: 70px;
     display: flex;
     align-items: center;
-    background: rgba(18,46,33,0.78);
-    border: 1px solid rgba(255,255,255,0.22);
-    border-radius: 24px;
-    box-shadow: 0 28px 80px rgba(0,0,0,0.28);
+    padding: 0 20px;
+    border-bottom: 1px solid #e8ece8;
+    flex-shrink: 0;
+}
+.search_overlay_logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a4d38;
+    letter-spacing: -0.5px;
+}
+
+/* 오버레이 카드 컨테이너 */
+.search_overlay_inner {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .btn_search_close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    width: 44px; height: 44px;
+    position: fixed;
+    top: 14px;
+    right: 20px;
+    width: 42px; height: 42px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    border: 1px solid rgba(255,255,255,0.36);
+    background: #f4f6f1;
+    border: 1.5px solid #dce6dc;
     display: flex; align-items: center; justify-content: center;
-    color: rgba(255,255,255,0.9);
+    color: #1a4d38;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, border-color 0.2s;
+    z-index: 10;
 }
-.btn_search_close:hover { background: rgba(255,255,255,0.2); color: #fff; }
+.btn_search_close:hover { background: #e4ebe4; border-color: #1a4d38; }
 .btn_search_close .material-icons { font-size: 20px; }
 
+/* 콘텐츠 중앙 영역 */
 .search_overlay_content {
-    width: 100%;
-    transform: translateY(20px);
+    width: min(680px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 64px 0 80px;
+    transform: translateY(16px);
     transition: transform 0.35s cubic-bezier(0.25,1,0.5,1);
 }
 .search_overlay.open .search_overlay_content {
@@ -204,31 +225,32 @@ img { max-width: 100%; display: block; }
 }
 
 .search_label {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1a2118;
+    margin-bottom: 28px;
+    line-height: 1.2;
 }
 
 .search_input_wrap {
     display: flex;
     align-items: center;
     gap: 0;
-    background: rgba(255,255,255,0.16);
-    border: 1.5px solid rgba(255,255,255,0.3);
+    background: #fff;
+    border: 2px solid #dce6dc;
     border-radius: 16px;
-    padding: 0 20px;
-    transition: border-color 0.25s, background 0.25s;
-    margin-bottom: 32px;
+    padding: 0 16px 0 20px;
+    transition: border-color 0.22s, box-shadow 0.22s;
+    margin-bottom: 36px;
+    box-shadow: 0 2px 16px rgba(26,77,56,0.06);
 }
 .search_input_wrap:focus-within {
-    border-color: rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.12);
+    border-color: #1a4d38;
+    box-shadow: 0 4px 24px rgba(26,77,56,0.12);
 }
 
-.search_icon { font-size: 22px; color: rgba(255,255,255,0.45); flex-shrink: 0; }
+.search_icon { font-size: 22px; color: #8fa89b; flex-shrink: 0; }
 
 .search_input {
     flex: 1;
@@ -236,37 +258,39 @@ img { max-width: 100%; display: block; }
     border: none;
     outline: none;
     font-family: inherit;
-    font-size: 22px;
-    font-weight: 300;
-    color: #fff;
-    padding: 20px 16px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1a2118;
+    padding: 20px 14px;
     letter-spacing: -0.01em;
 }
-.search_input::placeholder { color: rgba(255,255,255,0.3); }
+.search_input::placeholder { color: #b8c8b8; }
 
 .btn_search_submit {
     flex-shrink: 0;
     height: 40px;
     padding: 0 20px;
-    background: #111;
+    background: #1a4d38;
     color: #fff;
     font-size: 13px;
     font-weight: 700;
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    font-family: inherit;
     transition: background 0.22s;
 }
-.btn_search_submit:hover { background: #000; }
+.btn_search_submit:hover { background: #122e21; }
 
+/* 추천 검색어 */
 .search_suggest_label {
     display: block;
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    margin-bottom: 12px;
+    color: #8fa89b;
+    margin-bottom: 14px;
 }
 .search_tags {
     display: flex;
@@ -274,12 +298,12 @@ img { max-width: 100%; display: block; }
     gap: 8px;
 }
 .search_tags button {
-    height: 34px;
-    padding: 0 16px;
+    height: 36px;
+    padding: 0 18px;
     border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.18);
-    background: rgba(255,255,255,0.07);
-    color: rgba(255,255,255,0.7);
+    border: 1.5px solid #dce6dc;
+    background: #fff;
+    color: #1a4d38;
     font-size: 13px;
     font-weight: 500;
     cursor: pointer;
@@ -287,8 +311,8 @@ img { max-width: 100%; display: block; }
     transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 .search_tags button:hover {
-    background: rgba(255,255,255,0.15);
-    border-color: rgba(255,255,255,0.4);
+    background: #1a4d38;
+    border-color: #1a4d38;
     color: #fff;
 }
 
@@ -369,27 +393,32 @@ img { max-width: 100%; display: block; }
 
     .search_overlay {
         align-items: stretch;
-        padding: 16px;
+        padding: 0;
     }
 
     .search_overlay_inner {
         max-width: none;
-        min-height: calc(100vh - 32px);
-        padding: 86px 20px 28px;
-        border-radius: 20px;
+        min-height: 100vh;
+        padding: 0;
+        border-radius: 0;
         align-items: flex-start;
         overflow-y: auto;
     }
 
+    .search_overlay_content {
+        padding: 100px 0 60px;
+    }
+
     .btn_search_close {
-        top: 22px;
-        right: 20px;
+        top: 14px;
+        right: 16px;
         width: 40px;
         height: 40px;
     }
 
     .search_label {
-        margin-bottom: 14px;
+        font-size: 18px;
+        margin-bottom: 20px;
     }
 
     .search_input_wrap {
@@ -1507,7 +1536,7 @@ img { max-width: 100%; display: block; }
 
 .login-page {
     min-height: calc(100vh - 70px);
-    padding: 72px 20px 96px;
+    padding: 140px 20px 96px;
     background:
         linear-gradient(115deg, rgba(244,246,244,0.96) 0%, rgba(255,255,255,0.98) 54%, rgba(232,241,236,0.92) 100%);
 }
@@ -1645,12 +1674,20 @@ img { max-width: 100%; display: block; }
 
 .login-links {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
     margin: 22px 0;
     color: var(--text-muted);
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
+}
+
+.login-links-divider {
+    display: block;
+    width: 1px;
+    height: 12px;
+    background: #d0dbd4;
 }
 
 .social-login {
@@ -2634,7 +2671,11 @@ img { max-width: 100%; display: block; }
     }
 
     .login-page {
-        padding: 46px 14px 70px;
+        padding: 100px 14px 70px;
+    }
+
+    .login-links {
+        justify-content: space-between;
     }
 
     .login-panel,
@@ -2765,8 +2806,13 @@ img { max-width: 100%; display: block; }
         padding: 24px 20px;
     }
 
-    .login-options,
-    .login-links,
+    .login-options {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .social-login {
         display: grid;
         grid-template-columns: 1fr;
@@ -2774,7 +2820,10 @@ img { max-width: 100%; display: block; }
     }
 
     .login-links {
-        gap: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
     }
 }
 
@@ -2966,28 +3015,48 @@ img { max-width: 100%; display: block; }
     .gnb > li > a { padding: 22px 0; font-size: 15px; font-weight: 500; border-bottom: none; color: #333; }
     .gnb > li > a:hover { color: var(--primary-color); }
     .gnb > li > a.is-current { color: var(--primary-color); }
-    .gnb > li > a.is-current::before {
+    /* 언더라인: has_sub 화살표 제거 */
+    .gnb > li.has_sub > .main_menu_link { padding-right: 0; }
+    .gnb > li.has_sub > .main_menu_link::after { display: none; }
+
+    /* 활성 메뉴 언더라인 슬라이드 */
+    .gnb > li > a { position: relative; }
+    .gnb > li > a::after {
         content: "";
         position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 16px;
+        left: 0; right: 100%;
+        bottom: 14px;
         height: 2px;
-        border-radius: 999px;
         background: var(--primary-color);
+        border-radius: 999px;
+        transition: right 0.3s ease;
     }
-    .gnb > li.has_sub > .main_menu_link { padding-right: 18px; }
-    .gnb > li.has_sub > .main_menu_link::after { right: -5px; font-size: 17px; }
+    .gnb > li > a:hover::after,
+    .gnb > li.active > a::after,
+    .gnb > li > a.is-current::after { right: 0; }
 
-    /* 호버/클릭 레이어 드롭다운 변경 */
+    /* 서브메뉴: 위에서 슬라이드 드롭다운 */
     .sub_menu {
-        position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-        min-width: 174px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); border: 1px solid #eee;
-        background: #fff; padding: 12px 0; opacity: 0; visibility: hidden; display: block;
+        display: block;
+        position: absolute; top: 100%; left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        min-width: 174px;
+        background: #fff;
+        border: 1px solid #eee;
+        box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        border-radius: 10px;
     }
     .sub_menu li a { padding: 8px 16px; font-size: 12px; white-space: nowrap; }
-    .gnb > li.has_sub.active .sub_menu,
-    .gnb > li.has_sub:hover .sub_menu { opacity: 1; visibility: visible; top: 100%; }
+    .gnb > li.has_sub:hover .sub_menu,
+    .gnb > li.has_sub.active .sub_menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
     .header_util { grid-column: 3; justify-self: end; margin-top: 0; padding-top: 0; border-top: none; }
 
     /* 히어로 섹션 스케일 확대 */

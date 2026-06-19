@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디/비밀번호 찾기 - QuietSkin</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/find_account.css">
+</head>
+<body>
+    <div data-include="header"></div>
+
+    <main class="login-page">
+        <section class="fa-shell" aria-labelledby="fa-title">
+
+            <div class="login-panel fa-panel">
+                <span class="login-eyebrow">Find Account</span>
+                <h2 id="fa-title">아이디 / 비밀번호 찾기</h2>
+                <p>가입 시 등록한 정보로 계정을 확인할 수 있습니다.</p>
+
+                <!-- 탭 -->
+                <div class="fa-tabs" role="tablist">
+                    <button class="fa-tab active" role="tab" data-tab="id">아이디 찾기</button>
+                    <button class="fa-tab" role="tab" data-tab="pw">비밀번호 찾기</button>
+                </div>
+
+                <!-- 아이디 찾기 -->
+                <div class="fa-panel-body active" id="tab-id">
+                    <form action="#" method="post" class="login-form">
+                        <label for="fa-name">이름</label>
+                        <div class="login-field">
+                            <span class="material-icons" aria-hidden="true">person_outline</span>
+                            <input type="text" id="fa-name" name="name" placeholder="이름 입력" required>
+                        </div>
+
+                        <label for="fa-email">이메일</label>
+                        <div class="login-field">
+                            <span class="material-icons" aria-hidden="true">mail_outline</span>
+                            <input type="email" id="fa-email" name="email" placeholder="가입 시 이메일 주소" required>
+                        </div>
+
+                        <button type="submit" class="login-submit">아이디 찾기</button>
+                    </form>
+                </div>
+
+                <!-- 비밀번호 찾기 -->
+                <div class="fa-panel-body" id="tab-pw">
+                    <form action="#" method="post" class="login-form">
+                        <label for="fa-pw-id">아이디</label>
+                        <div class="login-field">
+                            <span class="material-icons" aria-hidden="true">badge</span>
+                            <input type="text" id="fa-pw-id" name="user-id" placeholder="아이디 입력" required>
+                        </div>
+
+                        <label for="fa-pw-email">이메일</label>
+                        <div class="login-field">
+                            <span class="material-icons" aria-hidden="true">mail_outline</span>
+                            <input type="email" id="fa-pw-email" name="email" placeholder="가입 시 이메일 주소" required>
+                        </div>
+
+                        <button type="submit" class="login-submit">임시 비밀번호 발송</button>
+                    </form>
+                </div>
+
+                <div class="login-links">
+                    <a href="./join.html">로그인</a>
+                    <a href="./register.html">회원가입</a>
+                </div>
+            </div>
+
+            <aside class="login-visual" aria-label="안내">
+                <img src="./images/product_all.jpg" alt="QuietSkin 진정 케어 이미지">
+                <div class="login-benefit">
+                    <strong>계정을 찾고 계신가요?</strong>
+                    <span>가입 시 입력한 이름과 이메일로 계정을 확인할 수 있습니다.</span>
+                </div>
+                <ul>
+                    <li><span class="material-icons">help_outline</span>이메일로 아이디 확인</li>
+                    <li><span class="material-icons">lock_reset</span>임시 비밀번호 이메일 발송</li>
+                    <li><span class="material-icons">support_agent</span>문의: quietskin@email.com</li>
+                </ul>
+            </aside>
+
+        </section>
+    </main>
+
+    <div data-include="footer"></div>
+    <script src="./js/script.js"></script>
+    <script>
+        /* 탭 전환 */
+        const faTabs = document.querySelectorAll('.fa-tab');
+        const faPanels = document.querySelectorAll('.fa-panel-body');
+        faTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                faTabs.forEach(t => t.classList.remove('active'));
+                faPanels.forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
