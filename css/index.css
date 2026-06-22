@@ -1544,15 +1544,31 @@
     .qs-hero__scroll-hint { right: 16px; bottom: 40px; }
 
     .qs-best__header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .qs-best__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
     .insta-header { flex-direction: column; align-items: flex-start; }
 
+    /* 카드 모바일 최적화 */
+    .card-body { padding: 12px 12px 10px; gap: 4px; }
+    .card-name { font-size: 13px; }
+    .card-volume { font-size: 11px; }
+    .card-tags .tag { font-size: 10px; }
     .card-bottom {
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
+        padding-top: 8px;
     }
-    .card-price-wrap { order: -1; }
-    .card-price { font-size: 16px; }
+    .card-review .stars { font-size: 11px; }
+    .card-review .cnt { font-size: 10px; }
+    .card-price { font-size: 15px; }
+    .btn-cart-add { padding: 10px; font-size: 12px; gap: 4px; }
+    .btn-cart-add .material-icons { font-size: 15px; }
+    .card-wish { width: 30px; height: 30px; top: 10px; right: 10px; }
+    .card-wish .material-icons { font-size: 15px; }
+    .card-badge { font-size: 9px; padding: 3px 8px; top: 10px; left: 10px; }
 
     .routine-slider-wrap {
         margin-left: -20px;
