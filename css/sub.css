@@ -804,6 +804,26 @@ body { padding-top: 70px; }
     padding-bottom: 16px; border-bottom: 2px solid var(--th);
     width: 100%;
 }
+.pd-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    border-bottom: 2px solid var(--th);
+}
+.pd-section-head .pd-title-row h2 {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    border-bottom: 0;
+}
+.pd-title-row .btn-sub-link {
+    flex-shrink: 0;
+    margin-bottom: 16px;
+    border-bottom: 0;
+    padding-bottom: 0;
+}
 
 /* ── 제품 스토리 ── */
 .pd-story { background: #fff; }

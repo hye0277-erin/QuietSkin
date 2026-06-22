@@ -152,8 +152,10 @@
             <div class="pd-content-inner">
                 <div class="pd-section-head">
                     <span class="sub-kicker">Key Ingredients</span>
-                    <h2>주요 성분</h2>
-                    <a href="./sub_brand_story.html" class="btn-sub-link">전체 성분 보기 <span class="material-icons">arrow_forward</span></a>
+                    <div class="pd-title-row">
+                        <h2>주요 성분</h2>
+                        <a href="./sub_brand_story.html" class="btn-sub-link">전체 성분 보기 <span class="material-icons">arrow_forward</span></a>
+                    </div>
                 </div>
                 <div class="pd-ing-grid">
                     <article>
@@ -331,16 +333,6 @@
 
     <div data-include="footer"></div>
     <script src="./js/script.js"></script>
-    <script>
-        /* 썸네일 클릭 시 메인 이미지 교체 */
-        const mainImg = document.querySelector('.pd-main-img img');
-        document.querySelectorAll('.pd-thumb').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.pd-thumb').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                mainImg.src = btn.querySelector('img').src;
-            });
-        });
-    </script>
+    <script src="./js/sub_products_view.js"></script>
 </body>
 </html>
