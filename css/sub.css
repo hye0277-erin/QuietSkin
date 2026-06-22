@@ -240,8 +240,20 @@ body { padding-top: 70px; }
     padding: 100px 0;
 }
 
-.bs-section-head { margin-bottom: 56px; }
-.bs-section-head.center { text-align: center; }
+.bs-section-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 0 60px;
+    margin-bottom: 56px;
+}
+.bs-section-head .sub-kicker { grid-column: 1 / -1; }
+.bs-section-head h2 { grid-column: 1; }
+.bs-section-head .bs-section-desc { grid-column: 2; margin-top: 0; align-self: end; }
+.bs-section-head.center {
+    display: block;
+    text-align: center;
+}
 .bs-section-head h2 {
     font-size: clamp(24px, 3vw, 38px);
     font-weight: 700; letter-spacing: -0.025em;
@@ -251,7 +263,10 @@ body { padding-top: 70px; }
 .bs-section-desc {
     font-size: 15px; color: var(--tb);
     line-height: 1.8; margin-top: 16px;
-    max-width: 560px; margin-left: auto; margin-right: auto;
+    max-width: 560px;
+}
+.bs-section-head.center .bs-section-desc {
+    margin-left: auto; margin-right: auto;
 }
 
 /* 오리진 */
