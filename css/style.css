@@ -3117,19 +3117,9 @@ img { max-width: 100%; display: block; }
 
     /* 서브메뉴: 드롭다운 */
     .gnb > li.has_sub { padding-bottom: 0; margin-bottom: 0; }
-    /* li 아래에 투명 브리지를 만들어 마우스가 서브메뉴로 이동 시 hover 끊김 방지 */
-    .gnb > li.has_sub::before {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: -20px;
-        right: -20px;
-        height: 8px;
-        z-index: 1000;
-    }
     .sub_menu {
         display: block;
-        position: absolute; top: calc(100% + 8px); left: 50%;
+        position: absolute; top: calc(100% + 4px); left: 50%;
         transform: translateX(-50%) translateY(-8px);
         min-width: 180px;
         background: rgba(255,255,255,0.75);
@@ -3159,8 +3149,7 @@ img { max-width: 100%; display: block; }
         border-radius: 8px;
         background: transparent;
     }
-    .gnb > li.has_sub:hover .sub_menu,
-    .gnb > li.has_sub.active .sub_menu {
+    .gnb > li.has_sub.is-open .sub_menu {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;

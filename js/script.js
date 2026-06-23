@@ -133,6 +133,23 @@ function initNavigation() {
         if (!mobileQuery.matches) closeMobileMenu();
     });
 
+    /* 데스크탑 드롭다운: CSS hover 대신 JS로 제어해 틈새 끊김 방지 */
+    const hasSubItems = document.querySelectorAll('.gnb > li.has_sub');
+    hasSubItems.forEach(function (li) {
+        var timer;
+        li.addEventListener('mouseenter', function () {
+            clearTimeout(timer);
+            if (!mobileQuery.matches) li.classList.add('is-open');
+        });
+        li.addEventListener('mouseleave', function () {
+            if (!mobileQuery.matches) {
+                timer = setTimeout(function () {
+                    li.classList.remove('is-open');
+                }, 80);
+            }
+        });
+    });
+
     window.addEventListener('scroll', updateHeaderState);
     updateHeaderState();
     setActiveNavigation();
