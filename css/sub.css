@@ -27,6 +27,10 @@ body { padding-top: 70px; }
     background: linear-gradient(135deg, #0d2a1e 0%, #1a4d38 55%, #2d6b4a 100%);
     overflow: hidden;
 }
+.sub-hero--narrow {
+    height: auto;
+    padding: 56px 0 48px;
+}
 .sub-hero__bg {
     position: absolute;
     inset: 0;
