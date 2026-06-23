@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initPromiseReviewSwiper();
         initDetailReviewSlider();
         initProductCategoryFilter();
+        initQuickMenu();
     });
 });
 
@@ -390,6 +391,26 @@ function initDetailReviewSlider() {
 
     window.addEventListener('resize', updateReviewPosition);
     updateReviewPosition();
+}
+
+function initQuickMenu() {
+    const qm = document.querySelector('.quick-menu');
+    if (!qm) return;
+
+    const topBtn = qm.querySelector('.qm-top');
+
+    const onScroll = function () {
+        qm.classList.toggle('is-visible', window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    if (topBtn) {
+        topBtn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 }
 
 function initProductCategoryFilter() {

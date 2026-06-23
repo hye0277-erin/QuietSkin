@@ -32,7 +32,7 @@
                             <input type="checkbox" checked>
                             <span>전체 선택 (3)</span>
                         </label>
-                        <button type="button" class="cart-text-btn"><span class="material-icons" aria-hidden="true">delete_outline</span>선택 삭제</button>
+                        <button type="button" class="cart-text-btn">선택 삭제</button>
                     </div>
 
                     <article class="cart-item">
@@ -137,23 +137,44 @@
 
                 <!-- 함께 담으면 좋은 제품 -->
                 <div class="cart-recommend">
-                    <h4>함께 담으면 좋아요</h4>
+                    <div class="cart-recommend-header">
+                        <span class="rec-label">함께 담으면 좋아요</span>
+                        <span class="rec-sub">루틴 완성을 위한 추천 제품</span>
+                    </div>
                     <div class="cart-recommend-list">
                         <div class="cart-recommend-item">
-                            <div class="rec-img"><img src="./images/product_suncream.png" alt="카밍 선크림"></div>
+                            <a href="./sub_products_view.html" class="rec-img">
+                                <img src="./images/product_suncream.png" alt="카밍 선크림">
+                            </a>
                             <div class="rec-info">
+                                <span class="rec-tag">NEW</span>
                                 <strong>카밍 선크림</strong>
-                                <span>28,000원</span>
+                                <p>자외선 차단과 진정을 동시에</p>
+                                <div class="rec-bottom">
+                                    <span class="rec-price">28,000원</span>
+                                    <button class="rec-add btn_cart_add" type="button" aria-label="장바구니 담기">
+                                        <span class="material-icons">add_shopping_cart</span>
+                                        장바구니 담기
+                                    </button>
+                                </div>
                             </div>
-                            <button class="rec-add" type="button" aria-label="장바구니 담기"><span class="material-icons">add</span></button>
                         </div>
                         <div class="cart-recommend-item">
-                            <div class="rec-img"><img src="./images/sec2_img02.jpg" alt="카밍 진정 앰플"></div>
+                            <a href="./sub_products_view.html" class="rec-img">
+                                <img src="./images/sec2_img02.jpg" alt="카밍 진정 앰플">
+                            </a>
                             <div class="rec-info">
+                                <span class="rec-tag best">BEST</span>
                                 <strong>카밍 진정 앰플 30ml</strong>
-                                <span>24,000원</span>
+                                <p>민감 피부 집중 진정 앰플</p>
+                                <div class="rec-bottom">
+                                    <span class="rec-price">24,000원</span>
+                                    <button class="rec-add btn_cart_add" type="button" aria-label="장바구니 담기">
+                                        <span class="material-icons">add_shopping_cart</span>
+                                        장바구니 담기
+                                    </button>
+                                </div>
                             </div>
-                            <button class="rec-add" type="button" aria-label="장바구니 담기"><span class="material-icons">add</span></button>
                         </div>
                     </div>
                 </div>
