@@ -17,7 +17,7 @@
 
 /* RESET */
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; word-break: keep-all; overflow-wrap: break-word; }
-body { font-family: 'Paperozi', sans-serif; color: var(--text-main); background-color: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body { font-family: 'Paperozi', sans-serif; font-size: 15px; color: var(--text-main); background-color: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 body.no-scroll { overflow: hidden; }
 a { text-decoration: none; color: inherit; transition: var(--transition-base); }
 ul, li { list-style: none; }
@@ -897,9 +897,6 @@ img { max-width: 100%; display: block; }
 
 .benefit-strip article:last-child {
     padding-right: 0;
-}
-
-.benefit-strip article:last-child {
     border-right: 0;
 }
 
@@ -2133,10 +2130,18 @@ img { max-width: 100%; display: block; }
 .brand-origin-section,
 .brand-message-section {
     display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
     gap: 50px;
     align-items: center;
+}
+
+.brand-origin-section {
+    grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
     padding: 76px 0;
+}
+
+.brand-message-section {
+    grid-template-columns: minmax(320px, 1fr) minmax(0, 0.9fr);
+    padding: 76px 0 100px;
 }
 
 .brand-origin-copy h3,
@@ -2279,11 +2284,6 @@ img { max-width: 100%; display: block; }
     font-size: 13px;
     font-weight: 500;
     line-height: 1.68;
-}
-
-.brand-message-section {
-    grid-template-columns: minmax(320px, 1fr) minmax(0, 0.9fr);
-    padding-bottom: 100px;
 }
 
 /* ==========================================================================

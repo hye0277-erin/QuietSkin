@@ -1,19 +1,9 @@
-/**
- * QuietSkin common UI script
- * - header/footer partial loading
- * - navigation and search interactions
- * - optional Swiper/reveal interactions
- */
-
 document.addEventListener('DOMContentLoaded', function () {
     loadCommonParts().then(function () {
         initNavigation();
         initSearch();
         initCartIndicators();
-        initHeroSwiper();
         initRevealAnimation();
-        initPromiseReviewSwiper();
-        initDetailReviewSlider();
         initProductCategoryFilter();
         initQuickMenu();
     });
@@ -279,118 +269,25 @@ function initCartIndicators() {
     });
 }
 
-function initHeroSwiper() {
-    if (typeof Swiper === 'undefined' || !document.querySelector('.hero_slider')) return;
-
-    new Swiper('.hero_slider', {
-        loop: true,
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true
-        },
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        }
-    });
-}
-
 function initRevealAnimation() {
     const revealTargets = document.querySelectorAll('.img_reveal_target');
-    if (!('IntersectionObserver' in window) || revealTargets.length === 0) {
-        revealTargets.forEach(function (target) {
-            target.classList.add('revealed');
-        });
+    if (revealTargets.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+        revealTargets.forEach(function (target) { target.classList.add('revealed'); });
         return;
     }
 
-    const revealObserver = new IntersectionObserver(function (entries, observer) {
+    const observer = new IntersectionObserver(function (entries, obs) {
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
+                obs.unobserve(entry.target);
             }
         });
-    }, {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    });
+    }, { threshold: 0.15 });
 
-    revealTargets.forEach(function (target) {
-        revealObserver.observe(target);
-    });
-}
-
-function initPromiseReviewSwiper() {
-    if (typeof Swiper === 'undefined' || !document.querySelector('.review_slider')) return;
-
-    new Swiper('.review_slider', {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 20,
-        autoplay: {
-            delay: 4500,
-            disableOnInteraction: false
-        },
-        navigation: {
-            nextEl: '.review-next',
-            prevEl: '.review-prev'
-        }
-    });
-}
-
-function initDetailReviewSlider() {
-    const reviewList = document.querySelector('.review-card-list');
-    const reviewCards = reviewList ? Array.from(reviewList.querySelectorAll('.review-card')) : [];
-    const prevButton = document.querySelector('.review-prev');
-    const nextButton = document.querySelector('.review-next');
-
-    if (!reviewList || reviewCards.length === 0 || !prevButton || !nextButton) return;
-
-    let currentIndex = 0;
-
-    const getVisibleCount = function () {
-        if (window.matchMedia('(max-width: 1023px)').matches) return 1;
-        return 3;
-    };
-
-    const updateReviewPosition = function () {
-        const gap = parseFloat(window.getComputedStyle(reviewList).columnGap) || 0;
-        const cardWidth = reviewCards[0].getBoundingClientRect().width;
-        const maxIndex = Math.max(reviewCards.length - getVisibleCount(), 0);
-
-        currentIndex = Math.min(currentIndex, maxIndex);
-        reviewList.scrollTo({
-            left: currentIndex * (cardWidth + gap),
-            behavior: 'smooth'
-        });
-
-        prevButton.disabled = currentIndex === 0;
-        nextButton.disabled = currentIndex === maxIndex;
-    };
-
-    prevButton.addEventListener('click', function () {
-        currentIndex = Math.max(currentIndex - 1, 0);
-        updateReviewPosition();
-    });
-
-    nextButton.addEventListener('click', function () {
-        const maxIndex = Math.max(reviewCards.length - getVisibleCount(), 0);
-        currentIndex = Math.min(currentIndex + 1, maxIndex);
-        updateReviewPosition();
-    });
-
-    window.addEventListener('resize', updateReviewPosition);
-    updateReviewPosition();
+    revealTargets.forEach(function (target) { observer.observe(target); });
 }
 
 function initQuickMenu() {
