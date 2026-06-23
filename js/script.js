@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadCommonParts().then(function () {
         initNavigation();
         initSearch();
+        initCartIndicators();
         initHeroSwiper();
         initRevealAnimation();
         initPromiseReviewSwiper();
@@ -198,6 +199,82 @@ function initSearch() {
 
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeSearch();
+    });
+}
+
+function initCartIndicators() {
+    const CART_KEY = 'quietskinCartCount';
+    const addButtons = document.querySelectorAll('.btn_cart_add, .btn-cart-add, .pd-cart-btn, .pd-pair-add, .rec-add');
+    const cartLinks = document.querySelectorAll('a[href$="cart.html"]');
+    let hideToastTimer;
+
+    const getCartCount = function () {
+        return Math.max(parseInt(localStorage.getItem(CART_KEY), 10) || 0, 0);
+    };
+
+    const setCartCount = function (count) {
+        localStorage.setItem(CART_KEY, String(count));
+        cartLinks.forEach(function (link) {
+            link.classList.add('has-cart-count');
+            link.setAttribute('data-cart-count', String(count));
+            link.setAttribute('aria-label', count > 0 ? '장바구니, 담긴 상품 ' + count + '개' : '장바구니');
+        });
+    };
+
+    const showCartToast = function (name) {
+        let toast = document.querySelector('.cart-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'cart-toast';
+            toast.setAttribute('role', 'status');
+            toast.setAttribute('aria-live', 'polite');
+            document.body.appendChild(toast);
+        }
+
+        toast.replaceChildren();
+        const icon = document.createElement('span');
+        icon.className = 'material-icons';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = 'check_circle';
+
+        const message = document.createElement('span');
+        message.textContent = name ? name + ' 상품을 담았어요' : '장바구니에 상품을 담았어요';
+
+        toast.append(icon, message);
+        toast.classList.add('show');
+
+        window.clearTimeout(hideToastTimer);
+        hideToastTimer = window.setTimeout(function () {
+            toast.classList.remove('show');
+        }, 1800);
+    };
+
+    const getProductName = function (button) {
+        const card = button.closest('.product_card, .qs-product-card, .pd-hero-info, .pd-pair-card, .cart-recommend-item');
+        if (!card) return '';
+
+        const nameNode = card.querySelector('.p_name, .card-name, h1, strong');
+        return nameNode ? nameNode.textContent.trim() : '';
+    };
+
+    setCartCount(getCartCount());
+
+    addButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const nextCount = getCartCount() + 1;
+            const productName = getProductName(button);
+            setCartCount(nextCount);
+            showCartToast(productName);
+
+            button.classList.add('is-added');
+            button.setAttribute('aria-label', '장바구니에 담김');
+            window.setTimeout(function () {
+                button.classList.remove('is-added');
+            }, 1200);
+        });
     });
 }
 
